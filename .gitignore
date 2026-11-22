@@ -1,0 +1,25 @@
+deploy/aws/.state/
+*.pem
+
+# Dependencies & builds
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.vite/
+**/.vite/
+coverage/
+*.log
+npm-debug.log*
+.DS_Store
+
+# Env / secrets (never commit)
+!.env.example
+!**/.env.example
+
+# Local IDE / caches
+.cursor/
+.idea/
+*.swp
+.terraform/
+config.bat

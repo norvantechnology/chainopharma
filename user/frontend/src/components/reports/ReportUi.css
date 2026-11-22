@@ -1,0 +1,744 @@
+.rptThreePane {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Master–detail (e.g. Mfg–Stockist): equal columns, stable minmax */
+.rptThreePane.rptThreePane--balanced {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.rptPaneHead--aligned {
+  min-height: 44px;
+  align-items: center;
+}
+
+.rptPaneSub--muted {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--color-text-3, #6b7280);
+}
+
+@media (max-width: 1100px) {
+  .rptThreePane {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rptPane {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e6e9ef);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 0;
+  max-height: min(70vh, 640px);
+}
+
+.rptPaneHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border, #eef0f4);
+  background: var(--color-bg-soft, #f7f9fc);
+}
+
+.rptPaneTitle {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-2, #4b5563);
+}
+
+.rptPaneSub {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-2, #4b5563);
+}
+
+.rptPaneBody {
+  flex: 1;
+  overflow: auto;
+}
+
+.rptList {
+  display: flex;
+  flex-direction: column;
+}
+
+.rptListItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-soft, #f1f3f7);
+  transition: background 120ms ease;
+}
+
+.rptListItemText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.rptListItemAside {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.rptListItem:hover {
+  background: var(--color-bg-soft, #f7f9fc);
+}
+
+.rptListItem.is-selected {
+  background: var(--color-primary-soft, #eaf2ff);
+}
+
+.rptListItem.is-selected .rptListItemPrimary {
+  color: var(--color-primary, #2563eb);
+  font-weight: 700;
+}
+
+.rptListItemPrimary {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-heading, #111827);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rptListItemSecondary {
+  font-size: 11px;
+  color: var(--color-text-3, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rptListItemMeta {
+  font-size: 11px;
+  color: var(--color-text-3, #6b7280);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rptListEmpty {
+  padding: 24px 14px;
+  text-align: center;
+  color: var(--color-text-3, #6b7280);
+  font-size: 13px;
+}
+
+.rptListEmptyLoad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rptListEmptyLoad .cl--inline {
+  justify-content: center;
+}
+
+.rptSearchRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.rptSearchInput {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #d4d8e0);
+  font-size: 14px;
+  background: var(--color-surface, #fff);
+}
+
+.rptSearchInput:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 3px var(--color-primary-soft, #dbeafe);
+}
+
+.rptSearchInput_narrow {
+  width: 110px;
+  flex: 0 0 auto;
+}
+
+.rptTableScroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Use border-collapse: collapse so thead/td columns share one grid.
+ * Sticky thead inside overflow-x:auto wrappers caused column drift in Chromium/WebKit.
+ */
+.rptBatchTable {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.rptBatchTable thead th {
+  background: var(--color-bg-soft, #f7f9fc);
+  text-align: left;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-3, #6b7280);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border, #e6e9ef);
+  vertical-align: bottom;
+}
+
+.rptBatchTable thead th.rptNum {
+  text-align: right;
+}
+
+.rptBatchTable tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border-soft, #f1f3f7);
+  vertical-align: middle;
+}
+
+/* FEFO / wide batch grid: stable column widths (Product–Supplier bottom table) */
+.rptBatchTable.rptBatchTable--fefo {
+  table-layout: fixed;
+  min-width: 58rem;
+}
+
+.rptBatchTable.rptBatchTable--fefo thead th:first-child,
+.rptBatchTable.rptBatchTable--fefo tbody td:first-child {
+  white-space: nowrap;
+}
+
+.rptBatchTable.rptBatchTable--mfgStockist {
+  table-layout: fixed;
+  min-width: 100%;
+}
+
+.rptBatchTable--mfgStockist col.rptColMfgStockistName {
+  width: 38%;
+}
+
+.rptBatchTable--mfgStockist col.rptColMfgStockistPhone {
+  width: 28%;
+}
+
+.rptBatchTable--mfgStockist col.rptColMfgStockistDate {
+  width: 34%;
+}
+
+.rptMfgStockistBanner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  padding: 8px 14px 10px;
+  border-bottom: 1px solid var(--color-border, #eef0f4);
+  background: var(--color-bg-soft, #f7f9fc);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-text-2, #4b5563);
+}
+
+.rptMfgStockistBannerLabel {
+  font-weight: 600;
+  color: var(--color-text-3, #6b7280);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.rptMfgStockistBannerName {
+  font-weight: 700;
+  color: var(--color-text-heading, #111827);
+  font-size: 13px;
+}
+
+.rptMfgStockistBannerCode {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-3, #6b7280);
+}
+
+.rptMfgStockistBannerHint {
+  flex: 1 1 240px;
+  min-width: min(100%, 320px);
+  font-size: 11.5px;
+}
+
+.rptMfgStockistBannerHint strong {
+  color: var(--color-text-heading, #111827);
+  font-weight: 600;
+}
+
+.rptToolbarFilters--tight {
+  flex: 1 1 220px;
+  justify-content: flex-end;
+  gap: 8px 12px;
+}
+
+.rptToolbarHint--end {
+  text-align: right;
+  max-width: min(100%, 400px);
+  line-height: 1.35;
+}
+
+.rptBatchTable.rptBatchTable--supplierList {
+  table-layout: fixed;
+  min-width: 100%;
+}
+
+.rptBatchTable tbody tr:hover {
+  background: var(--color-bg-soft, #f7f9fc);
+}
+
+.rptNum {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.rptExpiry {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.rptExpiry_red {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.rptExpiry_amber {
+  color: #b45309;
+  font-weight: 600;
+}
+
+.rptExpiry_green {
+  color: #047857;
+}
+
+.rptExpiryStack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.25;
+}
+
+.rptExpirySub {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-3, #6b7280);
+}
+
+.rptBadge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rptBadge_pref {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.rptSupplierTable tbody td {
+  vertical-align: middle;
+}
+
+.rptDateCell .rptListItemSecondary {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Product–Supplier: make product ↔ manufacturer ↔ vendor relationship explicit */
+.rptSkuContext {
+  padding: 8px 12px 10px;
+  border-bottom: 1px solid var(--color-border, #eef0f4);
+  background: linear-gradient(180deg, var(--color-bg-soft, #f7f9fc) 0%, var(--color-surface, #fff) 100%);
+}
+
+.rptSkuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rptSkuCodePill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-1);
+  color: var(--color-text-3, #6b7280);
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rptSkuMetaChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+.rptSkuMetaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--color-bg-soft, #f7f9fc);
+  border: 1px solid var(--color-border, #eef0f4);
+  color: var(--color-text-2, #4b5563);
+  font-size: 10.5px;
+  line-height: 1.2;
+}
+
+.rptSkuContextLabel {
+  margin: 0 0 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-3, #6b7280);
+}
+
+.rptSkuContextName {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-heading, #111827);
+}
+
+.rptSkuContextGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  align-items: baseline;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.rptSkuContextKey {
+  color: var(--color-text-3, #6b7280);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rptSkuContextVal {
+  color: var(--color-text-heading, #111827);
+  font-weight: 500;
+  min-width: 0;
+}
+
+.rptSkuContextHint {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--color-text-2, #4b5563);
+}
+
+.rptDetailHeader {
+  padding: 8px 14px 10px;
+  border-bottom: 1px solid var(--color-border, #eef0f4);
+  background: var(--color-surface, #fff);
+}
+
+.rptDetailHeaderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.rptDetailName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-heading, #111827);
+}
+
+.rptDetailMeta {
+  margin: 2px 0 0;
+  font-size: 11.5px;
+  color: var(--color-text-3, #6b7280);
+}
+
+.rptStockTotals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--color-text-2, #4b5563);
+  font-variant-numeric: tabular-nums;
+}
+
+.rptStockTotals strong {
+  color: var(--color-text-heading, #111827);
+}
+
+.rptBatchPane {
+  margin-top: 16px;
+}
+
+.rptToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.rptToolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.rptToolbarPrim {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.rptToolbarPrim .rptSearchInput {
+  min-width: 0;
+}
+
+.rptToolbarFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  flex: 1 1 240px;
+}
+
+.rptToolbarCheck {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.rptToolbarCheck input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.rptToolbarHint {
+  color: var(--color-text-3, #6b7280);
+  font-size: 11px;
+}
+
+.rptCountChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-primary-soft, #dbeafe);
+  color: var(--color-primary, #2563eb);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rptCountChip .cl--inline {
+  gap: 6px;
+}
+
+.rptCountChip .cl__inlineText {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary, #2563eb);
+}
+
+.rptVendorContact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rptVendorName {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-heading, #111827);
+}
+
+.rptVendorPhone {
+  font-size: 11px;
+  color: var(--color-text-3, #6b7280);
+  font-variant-numeric: tabular-nums;
+}
+
+.rptVendorAddress {
+  font-size: 10.5px;
+  color: var(--color-text-3, #6b7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.rptSupplierTable .rptVendorAddress {
+  max-width: 220px;
+}
+
+@media (max-width: 1100px) {
+  .rptBatchTable.rptBatchTable--fefo {
+    min-width: 52rem;
+  }
+}
+
+.rptExpiryChip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.rptExpiryChip.is-expired { background: #fee2e2; color: #b91c1c; }
+.rptExpiryChip.is-soon { background: #fef3c7; color: #b45309; }
+.rptExpiryChip.is-warn { background: #fff7ed; color: #c2410c; }
+.rptExpiryChip.is-ok { background: #ecfdf5; color: #047857; }
+
+/* Optional: indeterminate bar while any report fetch is in flight */
+.rptCard {
+  position: relative;
+}
+
+.rptCardBusyBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  line-height: 0;
+}
+
+.rptCardBusyBar .cl--bar {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .rptToolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .rptToolbarLeft,
+  .rptToolbarPrim,
+  .rptToolbarFilters {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+  }
+
+  .rptToolbarFilters {
+    gap: 8px;
+  }
+
+  .rptSearchInput,
+  .rptToolbarFilters .rptSearchInput,
+  .rptToolbarFilters select {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .rptSearchInput_narrow {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .rptListItemPrimary,
+  .rptListItemSecondary {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
+  }
+
+  .rptListItemAside {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .rptListEmpty {
+    padding: 20px 12px;
+    line-height: 1.45;
+  }
+
+  .rptVendorAddress {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .rptBatchTable,
+  .rptBatchTable.rptBatchTable--fefo {
+    min-width: 32rem;
+  }
+
+  .rptBatchTable.rptBatchTable--fefo {
+    min-width: 40rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .rptListEmpty {
+    padding: 16px 10px;
+    font-size: 12.5px;
+  }
+}

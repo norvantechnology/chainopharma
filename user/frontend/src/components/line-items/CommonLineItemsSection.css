@@ -1,0 +1,222 @@
+.cliSection {
+  border: 1px solid var(--cm-section-border, var(--color-border));
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--cm-section, var(--color-card, var(--color-bg-1)));
+  min-width: 0;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+.cliSectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--cm-section-border, var(--color-border)) 70%, transparent);
+  background: color-mix(in srgb, var(--color-surface-3) 55%, var(--color-surface) 45%);
+}
+
+.cliSectionTitle {
+  font-size: 10.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-4);
+}
+
+.cliSectionHint {
+  font-size: 11px;
+  color: var(--color-text-4);
+  font-weight: 600;
+  text-align: right;
+}
+
+.cliItemsWrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  scrollbar-width: thin;
+  background: color-mix(in srgb, var(--cm-section, var(--color-surface-2)) 80%, var(--color-surface) 20%);
+}
+
+.cliItemsWrap::-webkit-scrollbar {
+  height: 10px;
+}
+
+.cliItemsWrap::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.cliFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid color-mix(in srgb, var(--cm-section-border, var(--color-border)) 70%, transparent);
+  background: color-mix(in srgb, var(--color-surface-3) 55%, var(--color-surface) 45%);
+}
+
+.cliFooterLeft {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cliFooterRight {
+  margin-left: auto;
+}
+
+.cliAddLineBtn.ciab {
+  height: 31px;
+  border-radius: 8px;
+}
+
+.cliItemsTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.cliItemsTable th,
+.cliItemsTable td {
+  border-bottom: 1px solid color-mix(in srgb, var(--cm-section-border, var(--color-border)) 55%, transparent);
+  padding: 7px 8px;
+  font-size: 12px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.cliItemsTable thead th {
+  background: color-mix(in srgb, var(--color-surface-3) 55%, var(--color-surface) 45%);
+  color: var(--color-text-4);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cliItemsTable .num,
+.cliItemsTable .r {
+  text-align: right;
+}
+
+.cliItemsTable .center,
+.cliItemsTable .c {
+  text-align: center;
+}
+
+.cliItemsTable td .raInput {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  height: 38px;
+  border-radius: 8px;
+  font-size: var(--modal-fs-control, 13px);
+  padding: 0 8px;
+  line-height: 1.2;
+  border-color: color-mix(in srgb, var(--cm-input-border, var(--color-border)) 90%, transparent);
+  box-sizing: border-box;
+  display: block;
+}
+
+.cliItemsTable td select {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  height: 38px;
+  font-size: var(--modal-fs-control, 13px);
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 28px;
+}
+
+.cliItemsTable tbody td {
+  vertical-align: middle;
+  background: transparent;
+}
+
+.cliItemsTable tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--cm-section, var(--color-card)) 92%, transparent);
+}
+
+.cliItemsTable tbody tr:hover td {
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--cm-section, var(--color-bg-1)));
+}
+
+.cliItemsTable .piRowNum,
+.cliItemsTable .sbmRowNum {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cm-section, var(--color-card)) 78%, var(--cm-surface, var(--color-surface)) 22%);
+  color: var(--color-text-4);
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
+
+@media (max-width: 720px) {
+  /* When piItemsTable switches to card layout, stop horizontal scroll */
+  .cliItemsWrap {
+    overflow-x: visible;
+    overflow-y: visible;
+    background: transparent;
+  }
+  .cliSection {
+    overflow: visible;
+    border-radius: 12px;
+  }
+  .cliFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .cliFooterRight {
+    margin-left: 0;
+  }
+  .cliAddLineBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .cliSectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .cliSectionHint {
+    text-align: left;
+  }
+  .cliFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .cliFooterRight {
+    margin-left: 0;
+  }
+  .cliAddLineBtn {
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+    font-size: 13.5px;
+  }
+  .cliItemsWrap::-webkit-scrollbar {
+    height: 0;
+  }
+}

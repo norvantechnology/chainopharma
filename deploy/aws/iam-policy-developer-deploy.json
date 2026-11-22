@@ -1,0 +1,39 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LightsailLowCostServer",
+      "Effect": "Allow",
+      "Action": [
+        "lightsail:CreateInstances",
+        "lightsail:GetInstance",
+        "lightsail:GetInstances",
+        "lightsail:OpenInstancePublicPorts",
+        "lightsail:DownloadDefaultKeyPair",
+        "lightsail:GetInstanceAccessDetails",
+        "lightsail:StartInstance",
+        "lightsail:StopInstance",
+        "lightsail:RebootInstance",
+        "lightsail:TagResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "OptionalS3AppUploads",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::medico",
+        "arn:aws:s3:::medico/*",
+        "arn:aws:s3:::chainopharma-*",
+        "arn:aws:s3:::chainopharma-*/*"
+      ]
+    }
+  ]
+}

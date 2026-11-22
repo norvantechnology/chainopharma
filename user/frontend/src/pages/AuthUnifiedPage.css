@@ -1,0 +1,931 @@
+/* AuthUnifiedPage — login / signup (mobile-first) */
+
+.authPage, .authPage *{
+  box-sizing: border-box;
+}
+
+.authBody{
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 3vw, 24px);
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.authBody::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 500px at 10% 20%, rgba(26, 86, 219, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 90% 80%, rgba(16, 163, 74, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.authPage .wrapper{
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.authPage .wrapper.wide{
+  max-width: min(560px, 100%);
+}
+
+.authPage .card{
+  background: var(--color-card);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 4px 40px rgba(26, 86, 219, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Card header ── */
+.card-header{
+  background: var(--color-primary);
+  padding: 1.75rem 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.authPage .card-header::after{
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.authPage .card-header::before{
+  content: "";
+  position: absolute;
+  right: 40px;
+  bottom: -60px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Logo row ── */
+.logo-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.authPage .logo-row.has-tabs{
+  margin-bottom: 1.25rem;
+}
+
+.authPage .logo-icon{
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.authPage .logo-icon svg{
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.authPage .logo-name{
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+/* ── Tabs ── */
+.tabs{
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+  padding: 3px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.authPage .tab{
+  flex: 1;
+  min-height: 36px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  font-family: var(--font);
+  font-size: clamp(12px, 1.2vw, 13px);
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.authPage .tab:hover:not(.active){
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.authPage .tab.active{
+  background: #fff;
+  color: var(--color-primary);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+.authPage .tab:focus-visible{
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── Panels ── */
+.panels{
+  position: relative;
+  overflow: hidden;
+}
+
+.authPage .panel{
+  padding: 1.75rem 2rem 2rem;
+}
+
+.authPage .panel.hidden{
+  display: none;
+}
+
+/* ── Form typography ── */
+.form-title{
+  font-family: var(--font);
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.authPage .form-sub{
+  font-size: clamp(12px, 1.3vw, 13px);
+  color: var(--color-text-3);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Role chips ── */
+.roleRow{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.authPage .roleChip{
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text-2);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.authPage .roleChip:hover{
+  border-color: var(--color-border-focus);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.authPage .roleChip.active{
+  border-color: var(--color-border-focus);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* ── Fields ── */
+.field{
+  margin-bottom: 1rem;
+}
+
+.authPage label{
+  display: block;
+  font-size: clamp(11px, 1.15vw, 12px);
+  font-weight: 500;
+  color: var(--color-text-2);
+  margin-bottom: 6px;
+  letter-spacing: 0.1px;
+}
+
+.authPage .reqMark{
+  color: var(--color-danger);
+}
+
+.authPage .input-wrap{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.authPage .input-wrap .ico{
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px;
+  max-height: 16px;
+  color: var(--color-text-4);
+  stroke: currentColor;
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.authPage input[type="text"], .authPage input[type="email"], .authPage input[type="password"], .authPage input[type="tel"]{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 11px 12px 11px 38px;
+  font-family: var(--font);
+  font-size: 16px; /* avoid iOS zoom on focus */
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.authPage input.no-icon{
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.authPage .input-wrap input.no-icon{
+  padding-right: 42px;
+}
+
+.authPage input:focus{
+  border-color: var(--color-border-focus);
+  background: #fff;
+  box-shadow: 0 0 0 3.5px rgba(26, 86, 219, 0.11);
+}
+
+.authPage .input-wrap:focus-within .ico{
+  color: var(--color-primary);
+  stroke: currentColor;
+}
+
+.authPage input::placeholder{
+  color: var(--color-text-4);
+}
+
+/* ── Eye button ── */
+.eye-btn{
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.authPage .eye-btn:hover{
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+}
+
+.authPage .eye-btn svg{
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--color-text-4);
+  stroke: currentColor;
+  stroke-width: 1.9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: color 0.2s;
+}
+
+.authPage .eye-btn:hover svg{
+  color: var(--color-text-2);
+  stroke: currentColor;
+}
+
+/* ── Between row (remember me + forgot) ── */
+.between-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 1.25rem;
+}
+
+.authPage .check-label{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.authPage .check-label input[type="checkbox"]{
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  accent-color: var(--color-primary);
+  border: none;
+  background: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.authPage .check-label span{
+  font-size: 13px;
+  color: var(--color-text-2);
+}
+
+.authPage .link-btn{
+  font-size: 13px;
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  padding: 0;
+  text-decoration: none;
+}
+
+.authPage .link-btn:hover{
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+/* ── Submit button ── */
+.submit-btn{
+  width: 100%;
+  padding: 12px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: var(--font);
+  font-size: clamp(13px, 1.4vw, 14px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.authPage .submit-btn:hover{
+  background: var(--color-secondary);
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.3);
+}
+
+.authPage .submit-btn:active{
+  transform: scale(0.985);
+}
+
+.authPage .submit-btn:disabled{
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Card footer ── */
+.card-footer{
+  padding: 0.75rem 2rem 1.25rem;
+  text-align: center;
+  font-size: clamp(12px, 1.25vw, 13px);
+  color: var(--color-text-3);
+  border-top: 1px solid #f1f5f9;
+}
+
+.authPage .secure{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: clamp(11px, 1.1vw, 12px);
+  color: var(--color-text-4);
+}
+
+.authPage .secure svg{
+  width: 12px;
+  height: 12px;
+  stroke: var(--color-success);
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Registration: step indicator ── */
+.stepIndicator{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.authPage .stepDot{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-4);
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.authPage .stepDot.active{
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.18);
+}
+
+.authPage .stepDot.done{
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+}
+
+.authPage .stepLine{
+  flex: 1;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.authPage .stepLine.done{
+  background: var(--color-success);
+}
+
+/* ── Registration: step badge ── */
+.stepBadge{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--color-primary-light);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.authPage .stepDotMini{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.authPage .pendingBadge{
+  font-weight: 700;
+  color: var(--color-warning);
+}
+
+/* ── Registration: section card ── */
+.sectionCard{
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 1rem;
+}
+
+.authPage .sectionTitle{
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-2);
+  margin-bottom: 2px;
+}
+
+.authPage .sectionSub{
+  font-size: 12px;
+  color: var(--color-text-3);
+  margin-bottom: 14px;
+}
+
+/* ── Registration: 2-column grid ── */
+.grid2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.authPage .grid2:last-child{
+  margin-bottom: 0;
+}
+
+.authPage .grid2 > .field{
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+/* ── Registration: phone row ── */
+.phoneRow{
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 8px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.authPage .phoneRow select, .authPage .phoneRow input{
+  min-width: 0;
+  width: 100%;
+}
+
+.authPage .phoneRow select{
+  padding-left: 10px;
+  padding-right: 8px;
+  text-align: center;
+}
+
+/* ── Registration: select ── */
+.authPage select{
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-family: var(--font);
+  font-size: 16px;
+  color: var(--color-text-2);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.authPage select:focus{
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3.5px rgba(26, 86, 219, 0.11);
+  background: #fff;
+}
+
+/* ── Registration: textarea ── */
+.authPage textarea{
+  width: 100%;
+  max-width: 100%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-family: var(--font);
+  font-size: 16px;
+  color: var(--color-text);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.authPage textarea:focus{
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3.5px rgba(26, 86, 219, 0.11);
+  background: #fff;
+}
+
+/* ── Registration: nav row (back / next) ── */
+.navRow{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.authPage .back-btn{
+  padding: 10px 16px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-text-2);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.authPage .back-btn:hover{
+  background: var(--color-border);
+}
+
+.authPage .next-btn{
+  flex: 1;
+  padding: 10px 16px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.authPage .next-btn:hover{
+  background: var(--color-secondary);
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.3);
+}
+
+.authPage .next-btn:disabled{
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Registration: bottom link ── */
+.bottomLink{
+  text-align: center;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--color-text-3);
+}
+
+.authPage .bottomLink a{
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.authPage .bottomLink a:hover{
+  text-decoration: underline;
+}
+
+/* ── Registration: docs grid ── */
+.docsGrid{
+  display: grid;
+  gap: 10px;
+}
+
+/* ── Registration: scrollable panel (desktop) ── */
+.panel.register-panel{
+  max-height: min(720px, calc(100dvh - 220px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.authPage .panel.register-panel::-webkit-scrollbar{
+  width: 5px;
+}
+
+.authPage .panel.register-panel::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+.authPage .panel.register-panel::-webkit-scrollbar-thumb{
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+/* ── Responsive: tablet / large phones ── */
+@media (max-width: 640px){.authBody{
+    align-items: flex-start;
+    padding: 16px 14px;
+    padding-top: max(16px, env(safe-area-inset-top, 0px));
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  }
+.authPage .wrapper, .authPage .wrapper.wide{
+    max-width: 100%;
+  }
+.authPage .card{
+    border-radius: 16px;
+  }
+.authPage .card-header{
+    padding: 1.25rem 1.25rem 1.1rem;
+  }
+.authPage .logo-row.has-tabs{
+    margin-bottom: 0.9rem;
+  }
+.authPage .logo-icon{
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+.authPage .logo-icon svg{
+    width: 16px;
+    height: 16px;
+  }
+.authPage .logo-name{
+    font-size: 15px;
+  }
+.authPage .tab{
+    min-height: 40px;
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+.authPage .panel{
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+.authPage .form-title{
+    font-size: clamp(18px, 5.5vw, 22px);
+  }
+.authPage .form-sub{
+    margin-bottom: 1.1rem;
+    line-height: 1.45;
+  }
+.authPage .roleChip{
+    min-height: 42px;
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+.authPage .grid2{
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+.authPage .grid2 > .field{
+    margin-bottom: 1rem;
+  }
+.authPage .grid2 > .field:last-child{
+    margin-bottom: 0;
+  }
+.authPage .sectionCard{
+    padding: 14px;
+    border-radius: 10px;
+  }
+.authPage .phoneRow{
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+.authPage .card-footer{
+    padding: 0.85rem 1.25rem 1.15rem;
+  }
+.authPage .panel.register-panel{
+    max-height: none;
+    overflow: visible;
+  }
+.authPage .navRow{
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 8px;
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, var(--color-card) 28%);
+    padding-top: 10px;
+    margin-top: 0.75rem;
+  }
+.authPage .back-btn, .authPage .next-btn, .authPage .submit-btn{
+    width: 100%;
+    min-height: 44px;
+    text-align: center;
+    justify-content: center;
+  }
+.authPage .stepIndicator{
+    margin-bottom: 1rem;
+  }
+.authPage .stepDot{
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ── Responsive: small phones ── */
+@media (max-width: 400px){.authBody{
+    padding: 12px 10px;
+    padding-top: max(12px, env(safe-area-inset-top, 0px));
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  }
+.authPage .card{
+    border-radius: 14px;
+  }
+.authPage .card-header{
+    padding: 1.1rem 1rem 0.95rem;
+  }
+.authPage .panel{
+    padding: 1.15rem 1rem 1.35rem;
+  }
+.authPage .between-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+.authPage .phoneRow{
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 6px;
+  }
+.authPage .roleRow{
+    gap: 6px;
+  }
+.authPage .roleChip{
+    font-size: 12px;
+    padding: 9px 6px;
+  }
+}
+
+@media (max-height: 700px) and (min-width: 641px) {.authPage .panel.register-panel{
+    max-height: calc(100dvh - 180px);
+  }
+}
+
+@media (max-height: 720px) {.authBody{
+    align-items: flex-start;
+  }
+}
+
+
+/* Mobile auth card spacing — high specificity so dashboard .panel { padding:0 } cannot collapse it */
+@media (max-width: 640px) {
+  .authPage.authBody,
+  .authBody.authPage {
+    padding: 16px 14px !important;
+    padding-top: max(16px, env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .authPage .card-header {
+    padding: 1.25rem 1.25rem 1.1rem !important;
+  }
+  .authPage .panel {
+    padding: 1.25rem 1.25rem 1.5rem !important;
+  }
+  .authPage .card-footer {
+    padding: 0.85rem 1.25rem 1.15rem !important;
+  }
+  .authPage .sectionCard {
+    padding: 14px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .authPage.authBody,
+  .authBody.authPage {
+    padding: 12px 10px !important;
+    padding-top: max(12px, env(safe-area-inset-top, 0px)) !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .authPage .card-header {
+    padding: 1.1rem 1rem 0.95rem !important;
+  }
+  .authPage .panel {
+    padding: 1.15rem 1rem 1.35rem !important;
+  }
+}

@@ -1,0 +1,295 @@
+.mrTabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 2px 12px;
+  margin: 4px 0 12px;
+  position: relative;
+  z-index: 30;
+  isolation: isolate;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+}
+
+.invReportTabs {
+  z-index: 40;
+  margin-bottom: 8px;
+  padding: 6px 2px 10px;
+}
+
+.invReportHint {
+  margin: -2px 0 12px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.invReportBody {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.invReportPage .psrReport_embedded.psrReport.page {
+  padding: 0;
+  max-width: none;
+}
+
+.invReportPage .psrReport_embedded .psrBusyStrip {
+  position: relative;
+  top: auto;
+  z-index: 1;
+  margin: 0 0 10px;
+}
+
+.mrTabs_scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.mrTabs_scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.mrTabs_scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-border) 70%, transparent);
+  border-radius: 999px;
+}
+
+.mrTab {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-text-2);
+  padding: 10px 14px;
+  min-height: 40px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font);
+  line-height: 1.2;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, box-shadow 140ms ease;
+  pointer-events: auto !important;
+  user-select: none;
+}
+
+.mrTab:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, var(--color-border));
+  color: var(--color-primary);
+}
+
+.mrTab:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.mrTab_active {
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-card));
+  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border));
+  color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.mrTabCount {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  color: var(--color-primary);
+}
+
+.mrTabsActions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.mrBody {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.mrHint {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-primary) 5%, var(--color-card));
+  color: var(--color-text-2);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.gstSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  padding: 0 0 12px;
+}
+
+.gstSummaryCard {
+  padding: 12px !important;
+  box-shadow: none !important;
+}
+
+.gstSummaryLabel {
+  font-size: 12px !important;
+}
+
+.gstSummaryValue {
+  font-size: 16px !important;
+  margin-top: 4px;
+}
+
+.gstTableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gstTable {
+  width: 100%;
+  min-width: 720px;
+}
+
+.gstEmpty,
+.gstLimitations {
+  padding: 12px 4px;
+}
+
+.gstTabHint {
+  margin: -4px 0 10px;
+}
+
+.gstPage .rptToolbarFilters {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.invNmCards {
+  display: none;
+}
+
+.invNmCard {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-card);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.invNmCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.invNmIdle {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-warning-strong, #b45309);
+  background: color-mix(in srgb, var(--color-warning, #f59e0b) 14%, transparent);
+  border-radius: 999px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.invNmMeta,
+.invNmStock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-size: 12px;
+  color: var(--color-text-2);
+}
+
+.invNmStock span {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .mrTabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    gap: 6px;
+    padding-bottom: 10px;
+  }
+
+  .mrTab {
+    padding: 9px 12px;
+    font-size: 12.5px;
+    min-height: 38px;
+    white-space: nowrap;
+  }
+
+  .invReportHint {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .invNmCards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 0 8px;
+  }
+
+  .invNmTableWrap {
+    display: none;
+  }
+
+  .mrTabsActions {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+
+  .mrTabsActions .appBtn {
+    width: 100%;
+  }
+
+  .gstSummaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gstPage .rptToolbarFilters {
+    gap: 8px;
+  }
+
+  .gstPage .rptSearchInput_narrow {
+    min-width: 0;
+    flex: 1 1 120px;
+  }
+
+  .gstTable {
+    min-width: 560px;
+  }
+
+  .gstEmpty,
+  .gstLimitations {
+    padding: 16px 8px;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
+  }
+}

@@ -1,0 +1,341 @@
+/* Converted from UI developer HTML/CSS – keep UI identical. */
+
+.pdWrap {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font);
+
+  /* Local tokens (match provided HTML defaults, but respect app theme where possible). */
+  --pd-blue: #2563eb;
+  --pd-blue-dark: #1d4ed8;
+  --pd-blue-light: #eff6ff;
+  --pd-blue-mid: #bfdbfe;
+  --pd-text-primary: #111827;
+  --pd-text-secondary: #374151;
+  --pd-text-muted: #6b7280;
+  --pd-text-hint: #9ca3af;
+  --pd-border: #e5e7eb;
+  --pd-border-soft: #f3f4f6;
+  --pd-bg-white: #ffffff;
+  --pd-bg-surface: #f9fafb;
+  --pd-danger: #ef4444;
+  --pd-danger-light: #fef2f2;
+  --pd-danger-border: #fecaca;
+  --pd-radius-sm: 6px;
+  --pd-radius-md: 9px;
+  --pd-radius-lg: 13px;
+  --pd-shadow: 0 8px 30px rgba(0, 0, 0, 0.11), 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+/* ── Trigger button ── */
+.pdTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px 5px 5px;
+  border-radius: 40px;
+  border: 1.5px solid var(--pd-border);
+  background: var(--pd-bg-white);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+
+.pdTrigger:hover {
+  border-color: var(--pd-blue-mid);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.pdTrigger_open {
+  border-color: var(--pd-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.pdTrigAvatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pd-blue) 0%, var(--pd-blue-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
+
+.pdTrigInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.pdTrigName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--pd-text-primary);
+  white-space: nowrap;
+}
+
+.pdTrigRole {
+  font-size: 11.5px;
+  color: var(--pd-text-muted);
+}
+
+.pdTrigChevron {
+  color: var(--pd-text-hint);
+  display: flex;
+  align-items: center;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 2px;
+}
+
+.pdTrigger_open .pdTrigChevron {
+  transform: rotate(180deg);
+}
+
+.pdTrigChevron svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Dropdown panel ── */
+.pdDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 256px;
+  background: var(--pd-bg-white);
+  border: 1px solid var(--pd-border);
+  border-radius: var(--pd-radius-lg);
+  box-shadow: var(--pd-shadow);
+  z-index: 999;
+  overflow: hidden;
+
+  transform-origin: top right;
+  transform: scale(0.95) translateY(-6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.18s ease;
+}
+
+.pdDropdown_open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Identity card */
+.pdIdentity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 16px 13px;
+  border-bottom: 1px solid var(--pd-border-soft);
+}
+
+.pdIdAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pd-blue) 0%, var(--pd-blue-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.pdIdName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--pd-text-primary);
+}
+
+.pdIdEmail {
+  font-size: 12px;
+  color: var(--pd-text-muted);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+
+.pdRoleChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 20px;
+  background: var(--pd-blue-light);
+  color: var(--pd-blue);
+  border: 1px solid var(--pd-blue-mid);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+/* Menu */
+.pdMenu {
+  padding: 6px;
+}
+
+.pdItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: var(--pd-radius-md);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 13.5px;
+  color: var(--pd-text-secondary);
+  font-weight: 400;
+  text-align: left;
+  transition: background 0.14s, color 0.14s;
+}
+
+.pdItem:hover {
+  background: var(--pd-bg-surface);
+  color: var(--pd-text-primary);
+}
+
+.pdItemIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--pd-radius-sm);
+  background: var(--pd-bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--pd-text-muted);
+  border: 1px solid var(--pd-border);
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+}
+
+.pdItem:hover .pdItemIcon {
+  background: var(--pd-blue-light);
+  color: var(--pd-blue);
+  border-color: var(--pd-blue-mid);
+}
+
+.pdItemText {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdItemLabel {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.pdItemDesc {
+  font-size: 11.5px;
+  color: var(--pd-text-hint);
+  margin-top: 1px;
+}
+
+.pdItemArrow {
+  color: var(--pd-text-hint);
+  opacity: 0;
+  transition: opacity 0.14s, transform 0.14s;
+  display: grid;
+  place-items: center;
+}
+
+.pdItem:hover .pdItemArrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.pdItemArrow svg {
+  width: 13px;
+  height: 13px;
+}
+
+.pdDivider {
+  height: 1px;
+  background: var(--pd-border-soft);
+  margin: 4px 6px;
+}
+
+/* Danger item */
+.pdItem_danger {
+  color: var(--pd-danger);
+}
+
+.pdItem_danger:hover {
+  background: var(--pd-danger-light);
+}
+
+.pdItem_danger .pdItemIcon {
+  border-color: var(--pd-danger-border);
+  color: var(--pd-danger);
+  background: var(--pd-danger-light);
+}
+
+.pdItem_danger:hover .pdItemIcon {
+  background: var(--pd-danger-light);
+  color: var(--pd-danger);
+  border-color: var(--pd-danger-border);
+}
+
+.pdItem_danger .pdItemLabel {
+  color: var(--pd-danger);
+}
+
+/* Footer */
+.pdFooter {
+  padding: 10px 16px;
+  border-top: 1px solid var(--pd-border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pdVersion {
+  font-size: 11px;
+  color: var(--pd-text-hint);
+}
+
+.pdFooterLink {
+  font-size: 11.5px;
+  color: var(--pd-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  padding: 0;
+  transition: opacity 0.14s;
+}
+
+.pdFooterLink:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .pdTrigInfo {
+    display: none;
+  }
+  .pdTrigChevron {
+    display: none;
+  }
+  .pdDropdown {
+    width: calc(100vw - 24px);
+    right: -12px;
+  }
+}
+

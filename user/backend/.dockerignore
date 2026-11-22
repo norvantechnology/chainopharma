@@ -1,0 +1,14 @@
+node_modules
+lib/nodejs-light/nodejs/node_modules
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+coverage
+.nyc_output
+.tmp
+.cache
+sql/**/*.bak

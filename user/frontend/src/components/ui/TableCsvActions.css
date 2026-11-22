@@ -1,0 +1,22 @@
+.tableCsvActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .tableCsvActions {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tableCsvActions .appBtn {
+    flex: 1 1 calc(50% - 8px);
+    min-width: min(100%, 140px);
+    min-height: 44px;
+    justify-content: center;
+  }
+}
+

@@ -1,0 +1,41 @@
+/* App shell aligned to HTML developer sidebar */
+
+:root {
+  --sidebar-w: 240px;
+  --sidebar-collapsed: 64px;
+  --sidebar-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.appShell2 {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.appShell2Main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  transition: margin-left var(--sidebar-transition);
+}
+
+.appShell2_collapsed .appShell2Main {
+  margin-left: var(--sidebar-collapsed);
+}
+
+.appShell2Content {
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .appShell2Main {
+    margin-left: 0 !important;
+  }
+
+  .appShell2Content {
+    /* Header is already sticky; no extra top padding needed. */
+    padding-top: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 14px;
+  }
+}
+

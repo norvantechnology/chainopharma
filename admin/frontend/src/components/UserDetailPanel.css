@@ -1,0 +1,526 @@
+/* UserDetailPanel (HTML developer design)  use theme variables only */
+
+.udpRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+
+.udpOverlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(15, 23, 42, 0.35);
+}
+
+.udpPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(92vw, 420px);
+  background: var(--color-card);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -4px 0 24px rgba(15, 23, 42, 0.07);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  animation: udpIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes udpIn {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.udpHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.udpTitle {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--color-text);
+}
+
+.udpHeaderRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.udpCloseBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--color-text-3);
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+}
+
+.udpCloseBtn:hover {
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--color-danger);
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
+.udpCloseBtn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.udpHero {
+  margin: 16px 18px 0;
+  padding: 16px;
+  background: var(--color-surface);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.udpAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.udpHeroInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.udpHeroName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.udpHeroEmailRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.udpHeroEmail {
+  font-size: 12.5px;
+  color: var(--color-text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.udpCopyBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  color: var(--color-text-4);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.udpCopyBtn:hover {
+  background: rgba(26, 86, 219, 0.08);
+  color: var(--color-primary);
+}
+
+.udpCopyBtn_ok {
+  color: var(--color-success);
+}
+
+.udpCopyBtn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.udpBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.udpRole {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--color-border);
+  background: rgba(100, 116, 139, 0.06);
+  color: var(--color-text-2);
+}
+
+.udpRole_wholesaler {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: rgba(26, 86, 219, 0.25);
+}
+
+.udpRole_retailer {
+  background: rgba(22, 163, 74, 0.12);
+  color: var(--color-success);
+  border-color: rgba(22, 163, 74, 0.18);
+}
+
+.udpRole_admin {
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--color-warning);
+  border-color: rgba(245, 158, 11, 0.22);
+}
+
+.udpRole_pharmacist {
+  background: rgba(26, 86, 219, 0.12);
+  color: var(--color-secondary);
+  border-color: rgba(26, 86, 219, 0.22);
+}
+
+.udpChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border: 1px solid var(--color-border);
+  background: rgba(100, 116, 139, 0.06);
+  color: var(--color-text-2);
+}
+
+.udpChip_ok {
+  background: rgba(22, 163, 74, 0.14);
+  color: #065f46;
+  border-color: rgba(22, 163, 74, 0.18);
+}
+
+.udpChip_bad {
+  background: rgba(220, 38, 38, 0.12);
+  color: #991b1b;
+  border-color: rgba(220, 38, 38, 0.18);
+}
+
+.udpSection {
+  padding: 18px 18px 0;
+}
+
+.udpSectionTitle {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--color-text-4);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.udpGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.udpCell {
+  background: var(--color-card);
+  padding: 11px 14px;
+}
+
+.udpCell_full {
+  grid-column: 1 / -1;
+}
+
+.udpLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.udpValue {
+  font-size: 13.5px;
+  color: var(--color-text);
+  font-weight: 400;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.udpInput,
+.udpTextarea {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  font-size: 13px;
+  color: var(--color-text);
+  font-family: var(--font);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.udpTextarea {
+  min-height: 72px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.udpInput:focus,
+.udpTextarea:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+  background: #fff;
+}
+
+.udpInputRow {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.udpHint {
+  font-size: 11.5px;
+  color: var(--color-text-4);
+  margin: 8px 18px 0;
+  padding: 10px 12px;
+  background: rgba(26, 86, 219, 0.06);
+  border: 1px solid rgba(26, 86, 219, 0.12);
+  border-radius: 8px;
+  line-height: 1.45;
+}
+
+.udpSelectWrap {
+  position: relative;
+  margin-top: 4px;
+}
+
+.udpSelect {
+  width: 100%;
+  height: 34px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  font-size: 13px;
+  color: var(--color-text);
+  font-family: var(--font);
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.udpSelect:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+  background: #fff;
+}
+
+.udpSelectChev {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--color-text-3);
+}
+
+.udpSelectChev svg {
+  width: 12px;
+  height: 12px;
+}
+
+.udpLicenseCard {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--color-surface);
+  margin-bottom: 8px;
+}
+
+.udpLicenseLabel {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--color-text-4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.udpLicenseNum {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.udpLicenseLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-primary);
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+.udpLicenseLink:hover {
+  text-decoration: underline;
+}
+
+.udpLinkIco svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+}
+
+.udpActionBar {
+  position: sticky;
+  bottom: 0;
+  padding: 12px 18px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-card);
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.udpBtnPrimary {
+  flex: 1;
+  height: 36px;
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.14s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.udpBtnPrimary:hover {
+  background: var(--color-secondary);
+}
+
+.udpBtnDanger {
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  background: rgba(220, 38, 38, 0.08);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-danger);
+  cursor: pointer;
+  font-family: var(--font);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.udpBtnDanger:hover {
+  background: rgba(220, 38, 38, 0.12);
+}
+
+.udpBtnGhost {
+  flex: 1;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-text-2);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.14s, border-color 0.14s;
+}
+
+.udpBtnGhost:hover {
+  background: rgba(100, 116, 139, 0.08);
+}
+
+.udpBtnIco svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+@media (max-width: 720px) {
+  .udpPanel {
+    width: min(96vw, 440px);
+  }
+  .udpGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .udpPanel {
+    width: 100vw;
+    border-left: none;
+  }
+  .udpHeader {
+    padding: 12px 14px;
+  }
+  .udpHero {
+    margin: 12px 14px 0;
+    padding: 14px;
+  }
+  .udpSection {
+    padding: 14px 14px 0;
+  }
+  .udpActionBar {
+    padding: 10px 14px;
+  }
+}
+

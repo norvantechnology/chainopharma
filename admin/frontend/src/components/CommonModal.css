@@ -1,0 +1,128 @@
+.cmRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 420;
+  display: grid;
+  place-items: center;
+  padding: clamp(8px, 2vw, 16px);
+  --cm-surface: color-mix(in srgb, var(--color-surface) 78%, var(--color-primary) 4%);
+  --cm-section: color-mix(in srgb, var(--color-card) 92%, var(--color-surface) 8%);
+  --cm-section-border: color-mix(in srgb, var(--color-border) 86%, transparent);
+  --cm-input-bg: color-mix(in srgb, var(--color-card) 94%, var(--color-surface) 6%);
+  --cm-input-border: color-mix(in srgb, var(--color-border) 92%, transparent);
+}
+
+.cmOverlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: color-mix(in srgb, var(--color-text) 45%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.cmPanel {
+  position: relative;
+  z-index: 1;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  box-shadow: 0 14px 48px color-mix(in srgb, var(--color-text) 18%, transparent);
+  animation: cmIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes cmIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cmHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+.cmTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.cmSub {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--color-text-3);
+}
+
+.cmClose {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-text) 2%, transparent);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--color-text-3);
+  flex-shrink: 0;
+}
+
+.cmClose:hover {
+  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  color: var(--color-danger);
+  border-color: color-mix(in srgb, var(--color-danger) 25%, transparent);
+}
+
+.cmClose svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cmBody {
+  padding: 16px;
+  overflow: auto;
+  background: var(--cm-surface);
+}
+
+.cmFooter {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-card);
+}
+
+/* Improve clarity inside admin modals too */
+.cmBody input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.cmBody select,
+.cmBody textarea,
+.cmBody .raInput,
+.cmBody .cdpInput {
+  background: var(--cm-input-bg);
+  border-color: var(--cm-input-border);
+}
+
+@media (max-width: 520px) {
+  .cmBody {
+    padding: 14px;
+  }
+  .cmHeader {
+    padding: 12px 14px;
+  }
+  .cmFooter {
+    padding: 10px 14px;
+  }
+}
+

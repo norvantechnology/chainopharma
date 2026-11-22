@@ -1,0 +1,5 @@
+Run these SQL files in this exact order on a fresh database:
+
+1) migrations/001_admin_user.sql
+2) seeds/002_admin_user_seed.sql
+

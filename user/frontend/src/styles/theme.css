@@ -1,0 +1,137 @@
+/* THEME: Medico Blue  — aligned with admin project */
+:root {
+  --color-primary:         #1a56db;
+  --color-secondary:       #1e40af;
+  --color-primary-dark:    #1648c0;
+  --color-primary-darker:  #1240b0;
+  --color-primary-light:   #eff6ff;
+  --color-primary-subtle:  #bfdbfe;
+
+  --color-success:         #16a34a;
+  --color-success-dark:    #15803d;
+  --color-success-darker:  #166534;
+  --color-success-deep:    #14532d;
+  --color-success-deeper:  #065f46;
+  --color-success-light:   #f0fdf4;
+  --color-success-subtle:  #bbf7d0;
+  --color-success-strong:  #10b981;
+
+  --color-danger:          #dc2626;
+  --color-danger-dark:     #b91c1c;
+  --color-danger-darker:   #991b1b;
+  --color-danger-deep:     #7f1d1d;
+  --color-danger-strong:   #ef4444;
+  --color-danger-light:    #fef2f2;
+  --color-danger-subtle:   #fecaca;
+
+  --color-warning:         #f59e0b;
+  --color-warning-dark:    #b45309;
+  --color-warning-darker:  #92400e;
+  --color-warning-deep:    #78350f;
+  --color-warning-strong:  #d97706;
+  --color-warning-light:   #fffbeb;
+  --color-warning-subtle:  #fde68a;
+
+  --color-bg:              #eef4ff;
+  --color-card:            #ffffff;
+  --color-surface:         #f9fafb;
+  --color-surface-2:       #f0f4ff;
+  --color-surface-3:       #e0eaff;
+
+  /* Common aliases used across pages/components */
+  --color-bg-1:            var(--color-card);
+  --color-bg-2:            var(--color-surface);
+  --color-text-1:          var(--color-text);
+  --color-input-bg:        var(--color-primary-light);
+
+  --color-border:          #e2e8f0;
+  --color-border-strong:   #c7d2fe;
+  --color-border-focus:    #1a56db;
+
+  --color-text:            #0f172a;
+  --color-text-2:          #374151;
+  --color-text-3:          #64748b;
+  --color-text-4:          #94a3b8;
+  --color-text-heading:    #0f172a;
+  --color-text-muted:      #475569;
+  --color-text-faint:      #94a3b8;
+
+  --color-on-primary:      #ffffff;
+  --color-on-danger:       #ffffff;
+
+  --shadow-xs:   0 1px 2px 0 rgba(26, 86, 219, 0.04);
+  --shadow-sm:   0 1px 3px 0 rgba(26, 86, 219, 0.06), 0 1px 2px -1px rgba(15, 23, 42, 0.06);
+  --shadow-md:   0 4px 6px -1px rgba(26, 86, 219, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg:   0 10px 15px -3px rgba(26, 86, 219, 0.09), 0 4px 6px -4px rgba(15, 23, 42, 0.07);
+  --shadow-card: 0 2px 8px 0 rgba(26, 86, 219, 0.06), 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+
+  --overlay-scrim:        rgba(15, 23, 42, 0.45);
+  --overlay-scrim-strong: rgba(15, 23, 42, 0.72);
+
+  --radius: 14px;
+  --font: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-serif: "Fraunces", "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Layout rhythm — tightened on small screens for dense mobile UI */
+  --layout-shell-pad-x: 16px;
+  --layout-shell-pad-y: 16px;
+  --layout-page-x: 6px;
+  --layout-page-y: 18px;
+  --layout-page-bottom: 24px;
+  --layout-card-pad-x: 20px;
+  --layout-card-pad-y: 18px;
+  --layout-card-radius: 18px;
+  --layout-stack-gap: 12px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --radius: 12px;
+    --layout-shell-pad-x: 6px;
+    --layout-shell-pad-y: 6px;
+    --layout-page-x: 2px;
+    --layout-page-y: 8px;
+    --layout-page-bottom: 12px;
+    --layout-card-pad-x: 10px;
+    --layout-card-pad-y: 10px;
+    --layout-card-radius: 14px;
+    --layout-stack-gap: 8px;
+    --shadow-card: var(--shadow-sm);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font); }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { color: var(--color-secondary); text-decoration: underline; }
+
+/* ── Focus visuals suppressed app-wide (no outlines / synthetic rings on focused controls only) ── */
+*:focus,
+*:focus-visible {
+  outline: none !important;
+}
+
+*:focus-visible {
+  box-shadow: none !important;
+}
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible,
+button:focus,
+button:focus-visible {
+  outline: none !important;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+:-moz-focusring {
+  outline: none !important;
+}

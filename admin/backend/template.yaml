@@ -1,0 +1,267 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Chaino Pharma Admin Backend
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Stage:
+    Type: String
+    AllowedValues:
+      - local
+      - dev
+      - prod
+    Default: local
+    Description: Deployment stage (local/dev/prod)
+
+Mappings:
+  StageConfig:
+    local:
+      MemorySize: "256"
+      AppName: "medico-admin-backend-local"
+      ApiName: "medico-admin-api-local"
+      LightLayerName: "medico-admin-lib-light-local"
+      DbHost: "db.tcmjudishpkcyesabvqq.supabase.co"
+      DbPort: "5432"
+      DbName: "postgres"
+      DbUser: "postgres"
+      DbPassword: "Medico#123456$"
+      DbSsl: "require"
+      BcryptCost: "12"
+      JwtAccessSecret: "dev_only_change_me"
+      AccessTokenTtlSeconds: "900"
+      RefreshTokenTtlSeconds: "86400"
+      RefreshTokenTtlRememberSeconds: "5184000"
+      EnvironmentTag: "Local"
+    dev:
+      MemorySize: "256"
+      AppName: "medico-admin-backend-dev"
+      ApiName: "medico-admin-api-dev"
+      LightLayerName: "medico-admin-lib-light-dev"
+      DbHost: "db.tcmjudishpkcyesabvqq.supabase.co"
+      DbPort: "5432"
+      DbName: "postgres"
+      DbUser: "postgres"
+      DbPassword: "Medico#123456$"
+      DbSsl: "require"
+      BcryptCost: "12"
+      JwtAccessSecret: "dev_only_change_me"
+      AccessTokenTtlSeconds: "900"
+      RefreshTokenTtlSeconds: "86400"
+      RefreshTokenTtlRememberSeconds: "5184000"
+      EnvironmentTag: "Development"
+    prod:
+      MemorySize: "512"
+      AppName: "medico-admin-backend"
+      ApiName: "medico-admin-api"
+      LightLayerName: "medico-admin-lib-light"
+      DbHost: "db.tcmjudishpkcyesabvqq.supabase.co"
+      DbPort: "5432"
+      DbName: "postgres"
+      DbUser: "postgres"
+      DbPassword: "Medico#123456$"
+      DbSsl: "require"
+      BcryptCost: "12"
+      JwtAccessSecret: "change_me_in_prod"
+      AccessTokenTtlSeconds: "900"
+      RefreshTokenTtlSeconds: "86400"
+      RefreshTokenTtlRememberSeconds: "5184000"
+      EnvironmentTag: "Production"
+
+Conditions:
+  IsProd: !Equals [!Ref Stage, prod]
+  IsNotProd: !Not [!Equals [!Ref Stage, prod]]
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    MemorySize: !FindInMap [StageConfig, !Ref Stage, MemorySize]
+    Timeout: 30
+    Tracing: Active
+    Environment:
+      Variables:
+        STAGE: !Ref Stage
+        PANEL: "admin"
+        APP_NAME: !FindInMap [StageConfig, !Ref Stage, AppName]
+        DB_HOST: !FindInMap [StageConfig, !Ref Stage, DbHost]
+        DB_PORT: !FindInMap [StageConfig, !Ref Stage, DbPort]
+        DB_NAME: !FindInMap [StageConfig, !Ref Stage, DbName]
+        DB_USER: !FindInMap [StageConfig, !Ref Stage, DbUser]
+        DB_PASSWORD: !FindInMap [StageConfig, !Ref Stage, DbPassword]
+        DB_SSL: !FindInMap [StageConfig, !Ref Stage, DbSsl]
+        BCRYPT_COST: !FindInMap [StageConfig, !Ref Stage, BcryptCost]
+        JWT_ACCESS_SECRET: !FindInMap [StageConfig, !Ref Stage, JwtAccessSecret]
+        ACCESS_TOKEN_TTL_SECONDS: !FindInMap [StageConfig, !Ref Stage, AccessTokenTtlSeconds]
+        REFRESH_TOKEN_TTL_SECONDS: !FindInMap [StageConfig, !Ref Stage, RefreshTokenTtlSeconds]
+        REFRESH_TOKEN_TTL_REMEMBER_SECONDS: !FindInMap [StageConfig, !Ref Stage, RefreshTokenTtlRememberSeconds]
+    Layers:
+      - !Ref libsLight
+    Tags:
+      Application: "Chaino Pharma"
+      Panel: "Admin"
+      Environment: !FindInMap [StageConfig, !Ref Stage, EnvironmentTag]
+
+Resources:
+  libsLight:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !FindInMap [StageConfig, !Ref Stage, LightLayerName]
+      Description: Chaino Pharma (Admin) shared Node.js dependencies
+      ContentUri: lib/nodejs-light/
+      CompatibleRuntimes:
+        - nodejs22.x
+
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: !FindInMap [StageConfig, !Ref Stage, ApiName]
+      StageName: !Ref Stage
+      Cors:
+        AllowMethods: "'GET,POST,PUT,PATCH,DELETE,OPTIONS'"
+        AllowHeaders: "'content-type,authorization'"
+        AllowOrigin: "'*'"
+
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin hello endpoint
+      CodeUri: .
+      Handler: src/handlers/hello.handler
+      Events:
+        Hello:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
+            RestApiId: !Ref Api
+
+  AdminLoginFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin login
+      CodeUri: .
+      Handler: src/handlers/auth/login.handler
+      Events:
+        Login:
+          Type: Api
+          Properties:
+            Path: /auth/login
+            Method: POST
+            RestApiId: !Ref Api
+        LoginOptions:
+          Type: Api
+          Properties:
+            Path: /auth/login
+            Method: OPTIONS
+            RestApiId: !Ref Api
+
+  AdminUsersListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin list users
+      CodeUri: .
+      Handler: src/handlers/admin/users/list.handler
+      Events:
+        UsersList:
+          Type: Api
+          Properties:
+            Path: /admin/users
+            Method: GET
+            RestApiId: !Ref Api
+
+  AdminUsersGetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin get user details
+      CodeUri: .
+      Handler: src/handlers/admin/users/get.handler
+      Events:
+        UsersGet:
+          Type: Api
+          Properties:
+            Path: /admin/users/{id}
+            Method: GET
+            RestApiId: !Ref Api
+
+  AdminUsersPatchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin update user profile
+      CodeUri: .
+      Handler: src/handlers/admin/users/patch.handler
+      Events:
+        UsersPatch:
+          Type: Api
+          Properties:
+            Path: /admin/users/{id}
+            Method: PATCH
+            RestApiId: !Ref Api
+
+  AdminUsersUpdateStatusFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin update user status
+      CodeUri: .
+      Handler: src/handlers/admin/users/updateStatus.handler
+      Events:
+        UsersStatus:
+          Type: Api
+          Properties:
+            Path: /admin/users/{id}/status
+            Method: PATCH
+            RestApiId: !Ref Api
+
+  AdminUsersDeleteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin delete user
+      CodeUri: .
+      Handler: src/handlers/admin/users/delete.handler
+      Events:
+        UsersDelete:
+          Type: Api
+          Properties:
+            Path: /admin/users/{id}
+            Method: DELETE
+            RestApiId: !Ref Api
+
+  AdminRolesListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Admin list roles
+      CodeUri: .
+      Handler: src/handlers/admin/roles/list.handler
+      Events:
+        RolesList:
+          Type: Api
+          Properties:
+            Path: /admin/roles
+            Method: GET
+            RestApiId: !Ref Api
+
+  AdminAnnouncementGetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Get notice bar config for an account
+      CodeUri: .
+      Handler: src/handlers/admin/announcement/get.handler
+      Events:
+        AnnouncementGet:
+          Type: Api
+          Properties:
+            Path: /admin/announcement
+            Method: GET
+            RestApiId: !Ref Api
+
+  AdminAnnouncementPutFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Update global notice bar config (user app)
+      CodeUri: .
+      Handler: src/handlers/admin/announcement/put.handler
+      Events:
+        AnnouncementPut:
+          Type: Api
+          Properties:
+            Path: /admin/announcement
+            Method: PUT
+            RestApiId: !Ref Api
+

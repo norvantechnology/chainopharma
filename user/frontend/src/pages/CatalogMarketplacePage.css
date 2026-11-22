@@ -1,0 +1,452 @@
+.cmpHead {
+  align-items: center;
+  gap: 10px;
+}
+
+.cmpActions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cmpFormGrid {
+  gap: 10px;
+}
+
+.cmpCatalogModalForm .mfzInput,
+.cmpCatalogModalForm .mfzTextarea,
+.cmpCatalogModalForm input.mfzInput,
+.cmpCatalogModalForm select.mfzInput,
+.cmpCatalogModalForm textarea.mfzTextarea {
+  background: var(--color-card);
+  border: 1.5px solid color-mix(in srgb, var(--color-border) 85%, transparent);
+  color: var(--color-text);
+}
+
+.cmpCatalogModalForm .mfzInput::placeholder,
+.cmpCatalogModalForm .mfzTextarea::placeholder {
+  color: var(--color-text-3);
+  opacity: 0.8;
+}
+
+.cmpCatalogModalForm .mfzInput:focus,
+.cmpCatalogModalForm .mfzTextarea:focus {
+  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-border));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 12%, transparent);
+  background: var(--color-card);
+}
+
+/* ProductPicker inside this modal: keep it flat + readable */
+.cmpCatalogModalForm .ppChoiceCard,
+.cmpCatalogModalForm .ppComboField {
+  background: color-mix(in srgb, var(--color-surface) 70%, var(--color-card));
+  box-shadow: none;
+}
+.cmpCatalogModalForm .ppChoiceMark {
+  background: var(--color-primary);
+  box-shadow: none;
+}
+.cmpCatalogModalForm .ppChoiceMark svg {
+  filter: none;
+}
+
+.cmpFormGrid .mfzField > label:not(.mfzCheck) {
+  white-space: normal;
+}
+
+.cmpFormGrid .mfzCheck {
+  margin-top: 18px;
+}
+
+.cmpQtyCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.cmpQtyInput {
+  min-width: 92px;
+}
+
+.cmpProdCell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cmpProdMain {
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.cmpProdSub {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--color-text-3);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.cmpOrderIntro {
+  color: var(--color-text-2);
+  line-height: 1.35;
+}
+
+.cmpOrderLines {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: auto;
+  background: var(--color-card);
+}
+
+.cmpOrderTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cmpOrderTable th,
+.cmpOrderTable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  font-size: 13px;
+}
+
+.cmpOrderTable th {
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-card));
+  position: sticky;
+  top: 0;
+}
+
+.cmpNum {
+  text-align: right !important;
+}
+
+.cmpOrderEmpty {
+  padding: 14px;
+  color: var(--color-text-3);
+}
+
+.cmpOrderTotals {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+}
+
+.cmpOrderGrand {
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.cmpOrderWizard {
+  font-family: var(--font);
+}
+
+.cmpOrderStepBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.cmpOrderStepPill {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  background: color-mix(in srgb, var(--color-card) 85%, var(--color-surface));
+  padding: 10px 12px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: clamp(11px, 1.0vw, 12.5px);
+  color: var(--color-text-3);
+  text-align: center;
+}
+
+.cmpOrderStepPill.isActive {
+  border-color: color-mix(in srgb, var(--color-primary) 45%, var(--color-border));
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-card));
+  color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.cmpOrderStepPill.isDone {
+  border-color: color-mix(in srgb, var(--color-secondary) 40%, var(--color-border));
+  background: color-mix(in srgb, var(--color-secondary) 12%, var(--color-card));
+  color: var(--color-secondary);
+}
+
+.cmpOrderSummaryCard {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-card) 90%, var(--color-surface));
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.cmpOrderSummaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cmpOrderSummaryTile {
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 86%, var(--color-card));
+  padding: 10px 10px;
+}
+
+.cmpOrderSummaryLabel {
+  font-size: clamp(11.5px, 0.95vw, 13px);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+}
+
+.cmpOrderSummaryValue {
+  margin-top: 6px;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 900;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.cmpOrderSummaryTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px dashed color-mix(in srgb, var(--color-border) 75%, transparent);
+}
+
+.cmpOrderSummaryTotalLabel {
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+  font-size: clamp(12px, 1vw, 13px);
+}
+
+.cmpOrderSummaryTotalValue {
+  font-weight: 950;
+  color: var(--color-primary);
+  font-size: clamp(18px, 2vw, 22px);
+}
+
+@media (max-width: 720px) {
+  .cmpOrderSummaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cmpInfoGrid .mfzInput,
+.cmpInfoGrid .mfzTextarea {
+  background: color-mix(in srgb, var(--color-card) 86%, var(--color-surface));
+}
+
+.cmpInfoSectionTitle {
+  margin-top: 2px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 88%, var(--color-card));
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-3);
+}
+
+.cmpInfoGrid .mfzField > label:not(.mfzCheck) {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.cmpInfoGrid .mfzInput,
+.cmpInfoGrid .mfzTextarea {
+  min-height: 40px;
+}
+
+.cmpInfoGrid .mfzTextarea {
+  min-height: 84px;
+}
+
+.cmpOrderRowAction {
+  width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.cmpOrderRowAction .appBtn_leadIcon {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.cmpOrderRowAction svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Qty column: keep the stepper centered and compact */
+.cmpQtyStepperWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 520px) {
+  .cmpQtyStepperWrap {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cmpInfoGrid .mfz4,
+  .cmpInfoGrid .mfz3 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 720px) {
+  .cmpInfoGrid .mfz3,
+  .cmpInfoGrid .mfz4,
+  .cmpInfoGrid .mfz6 {
+    grid-column: span 12;
+  }
+}
+
+/* ── Mobile: catalog ordering UI (qty, actions, table density) ───────────── */
+@media (max-width: 720px) {
+  .cmpHead {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .cmpActions {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .cmpActions .appBtn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: min(100%, 148px);
+    justify-content: center;
+    min-height: 36px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .cmpQtyCell {
+    flex-wrap: wrap;
+    min-width: 0;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .cmpQtyInput {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .cmpOrderRowAction {
+    width: 36px;
+    min-height: 36px;
+    border-radius: 10px;
+  }
+
+  .cmpOrderRowAction svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cmpOrderTable th,
+  .cmpOrderTable td {
+    padding: 8px;
+    font-size: clamp(11.5px, 3vw, 13px);
+  }
+
+  .cmpProdMain {
+    font-size: clamp(13px, 3.5vw, 15px);
+  }
+
+  .cmpProdSub {
+    font-size: clamp(11px, 3vw, 12.5px);
+  }
+
+  .cmpOrderStepBar {
+    gap: 8px;
+  }
+
+  .cmpOrderStepPill {
+    min-height: 40px;
+    padding: 8px 10px;
+  }
+
+  .cmpOrderSummaryCard {
+    padding: 10px;
+    border-radius: 14px;
+  }
+
+  .cmpInfoSectionTitle {
+    font-size: clamp(11px, 3vw, 12px);
+    padding: 8px;
+  }
+
+  .cmpInfoGrid .mfzInput,
+  .cmpInfoGrid .mfzTextarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .cmpInfoGrid .mfzTextarea {
+    min-height: 88px;
+  }
+}
+
+/* Quantity picker (retailer) — compact body */
+.cmpCatalogQtyPick {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.cmpCatalogQtyPickProduct {
+  margin: 0;
+  font-weight: 750;
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+
+.cmpCatalogQtyPickStepper {
+  display: flex;
+  justify-content: center;
+}
+
+.cmpCatalogQtyPickLimits {
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-text-3);
+  text-align: center;
+  line-height: 1.35;
+}
+
