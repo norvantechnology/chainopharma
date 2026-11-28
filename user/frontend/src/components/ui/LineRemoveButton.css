@@ -52,9 +52,15 @@
   filter: none;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 768px) {
   .lineRemoveBtn {
-    --lrb-size: 28px;
+    --lrb-size: 40px;
+    border-radius: 10px;
+  }
+
+  .lineRemoveBtn svg {
+    width: 16px;
+    height: 16px;
   }
 }
 

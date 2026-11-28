@@ -406,15 +406,11 @@ export default function ProductMasterModal({
                     onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                     onChange={(e) => setField("name", e.target.value)}
                   />
-                  {(isRetailer || derivedMfgCompanyId) && clean(form.name).length >= 2 ? (
+                  {(isRetailer || derivedMfgCompanyId) && clean(form.name).length >= 2 && (nameCheck.loading || nameCheck.existing) ? (
                     <div className={nameHintClass}>
                       {nameCheck.loading
-                        ? "Checking availability…"
-                        : nameCheck.existing
-                          ? `Already used by ${nameCheck.existing.code}`
-                          : isRetailer
-                            ? "Available in your catalog"
-                            : "Available for this manufacturer"}
+                        ? "Checking…"
+                        : `Already used by ${nameCheck.existing.code}`}
                     </div>
                   ) : null}
                   {errors.name && (touched.name || clean(form.name).length > 0) ? <div className="mfzErr">{errors.name}</div> : null}
@@ -436,7 +432,6 @@ export default function ProductMasterModal({
                         onChange={(e) => setField("hsnCode", e.target.value)}
                         placeholder="e.g. 3004"
                       />
-                      <div className="mfzHelp">4–8 digits for GST returns.</div>
                     </div>
                     <div className="mfzField mfz6">
                       <div className="mfzLabel">Rack or shelf</div>
@@ -603,7 +598,6 @@ export default function ProductMasterModal({
             <div className="mfzPanelHead">
               <div>
                 <div className="mfzHeadKicker">Low stock</div>
-                <div className="mfzHeadHint">Alert when total quantity across batches is at or below the threshold.</div>
               </div>
             </div>
             <div className="mfzPanelBody">

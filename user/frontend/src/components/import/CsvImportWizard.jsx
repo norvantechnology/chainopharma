@@ -6,11 +6,7 @@ import { downloadCsvFile } from "../reports/reportExport.js";
 import { emitToast } from "../../services/toastBus.js";
 import { parseApiError } from "../../utils/api.js";
 import { importParse, importValidate, importExecute, importTemplateMeta, importJobsList } from "../../services/importService.js";
-import {
-  csvFieldColumnHeader,
-  csvImportMatchColumnsHint,
-  csvImportTemplatesHint
-} from "../../constants/brand.js";
+import { csvFieldColumnHeader } from "../../constants/brand.js";
 import "./CsvImportWizard.css";
 
 const ICON = 18;
@@ -100,20 +96,9 @@ export default function CsvImportWizard({ open, onClose, entityType, title, onCo
   }, [open, step, entityType]);
 
   const modalSubtitle = useMemo(() => {
-    const entity = String(entityType || "").replace(/_/g, " ");
     switch (step) {
-      case 1:
-        return `Get the column layout for ${entity}, then upload your export from Marg, KMS, Busy, or Excel.`;
-      case 2:
-        return "Choose a .csv, .xlsx, or .xls file. We keep your data in your account only.";
-      case 3:
-        return csvImportMatchColumnsHint();
-      case 4:
-        return "Check counts, duplicate rules, and errors before running the import.";
       case 5:
-        return "Writing rows  keep this window open.";
-      case 6:
-        return "You can close this dialog or import another file.";
+        return "Importing… keep this window open.";
       default:
         return "";
     }
@@ -268,19 +253,15 @@ export default function CsvImportWizard({ open, onClose, entityType, title, onCo
         {step === 1 ? (
           <div className="ciwStage">
             <div className="ciwCard">
-              <div className="ciwCardBody">
-                <p className="ciwLead">Start from a template or a filled sample, then go to the upload step.</p>
-                <p className="ciwHint">{csvImportTemplatesHint()}</p>
-              </div>
               <div className="ciwFooter ciwFooter_actions">
               <AppButton type="button" variant="secondary" size="md" disabled={busy} icon={<FileSpreadsheet size={ICON} />} onClick={downloadTemplate}>
-                Download template (headers only)
+                Download template
               </AppButton>
               <AppButton type="button" variant="secondary" size="md" disabled={busy} icon={<Download size={ICON} />} onClick={downloadSampleWithData}>
-                Download sample with data
+                Download sample
               </AppButton>
               <AppButton type="button" variant="primary" size="md" disabled={busy} trailingIcon={<ChevronRight size={ICON} />} onClick={() => setStep(2)}>
-                Next: upload file
+                Next: upload
               </AppButton>
             </div>
             </div>
@@ -352,7 +333,7 @@ export default function CsvImportWizard({ open, onClose, entityType, title, onCo
                     <Upload size={24} />
                   </div>
                   <div className="ciwDropTitle">{busy ? "Reading file…" : "Drop file here or click to browse"}</div>
-                  <p className="ciwDropSub">.csv, .xlsx, .xls · max ~6 MB · up to 8,000 rows per import</p>
+                  <p className="ciwDropSub">.csv, .xlsx, .xls</p>
                 </label>
                 {fileLabel && !busy ? <div className="ciwFileBadge">Selected: {fileLabel}</div> : null}
               </div>
@@ -371,15 +352,9 @@ export default function CsvImportWizard({ open, onClose, entityType, title, onCo
               <div className="ciwCardBody">
                 <div className="ciwMetaRow">
                   <p className="ciwLead">
-                    {totalRows} data rows · {headers.length} columns in file
+                    {totalRows} rows · {mappedColumnCount}/{headers.length} mapped
                   </p>
-                  {headers.length ? (
-                    <span className="ciwMapOk">
-                      {mappedColumnCount} of {headers.length} columns mapped (unmapped columns are skipped).
-                    </span>
-                  ) : null}
                 </div>
-                <p className="ciwHint">Fix any “Skip” that should feed a required field (marked * in the dropdown).</p>
                 <div className="ciwMapScroll">
                   <table className="ciwMapTable">
                     <thead>

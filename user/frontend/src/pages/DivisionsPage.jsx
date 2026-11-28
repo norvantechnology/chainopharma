@@ -143,7 +143,6 @@ export default function DivisionsPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.divisions}</div>
-            <div className="raSub">Supplier divisions under manufacturers  used for purchases and batches.</div>
           </div>
         </div>
 

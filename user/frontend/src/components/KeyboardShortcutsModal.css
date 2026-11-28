@@ -105,9 +105,9 @@
 
 @media (max-width: 720px) {
   .kshTrigger {
-    min-height: 36px;
-    padding: 5px 10px;
-    font-size: 11px;
+    min-height: 40px;
+    padding: 6px 12px;
+    font-size: 12px;
     gap: 6px;
   }
 

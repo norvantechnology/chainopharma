@@ -10,7 +10,7 @@ export default function PartyContactEmailModal({
   open,
   title = "Contact for email",
   icon = <IconEmail />,
-  partySubtitle,
+  partySubtitle: _partySubtitle,
   email,
   phone,
   phoneCountryCode,
@@ -23,7 +23,7 @@ export default function PartyContactEmailModal({
   onClose,
   onSave,
   saveLabel = "Save & send",
-  footerHint,
+  footerHint: _footerHint,
   permissionWarning
 }) {
   return (
@@ -48,9 +48,7 @@ export default function PartyContactEmailModal({
       }
     >
       <div className="sfm">
-        {partySubtitle ? <div className="raSub" style={{ marginBottom: 8 }}>{partySubtitle}</div> : null}
         {permissionWarning ? <div className="psErr">{permissionWarning}</div> : null}
-        {footerHint ? <div className="raSub" style={{ marginBottom: 8 }}>{footerHint}</div> : null}
         <div className="raField">
           <label>
             Email <span className="reqMark" aria-hidden="true">*</span>

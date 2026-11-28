@@ -76,8 +76,10 @@
 }
 
 .udpMastClose.xib {
-  width: clamp(32px, 7vw, 36px);
-  height: clamp(32px, 7vw, 36px);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   flex-shrink: 0;
 }
 

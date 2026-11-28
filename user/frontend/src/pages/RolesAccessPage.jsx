@@ -146,7 +146,6 @@ export default function RolesAccessPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.rolesAccess}</div>
-            <div className="raSub">Create custom roles and manage permissions (user-defined roles).</div>
           </div>
         </div>
 

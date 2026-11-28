@@ -5,3 +5,17 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 520px) {
+  .mfsAppActions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .mfsAppActions .appBtn {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+}

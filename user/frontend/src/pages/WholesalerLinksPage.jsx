@@ -226,11 +226,6 @@ export default function WholesalerLinksPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{isRetailer ? "Wholesalers" : "Match Requests"}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Find wholesalers and send a match request. After acceptance you can place orders."
-                : "Accept or reject retailer connection requests."}
-            </div>
           </div>
         </div>
         {!isRetailer && canDecide ? (

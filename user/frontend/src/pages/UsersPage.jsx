@@ -130,7 +130,6 @@ export default function UsersPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.users}</div>
-            <div className="raSub">Create users, assign roles, and manage access.</div>
           </div>
         </div>
         <div className="pageCard">

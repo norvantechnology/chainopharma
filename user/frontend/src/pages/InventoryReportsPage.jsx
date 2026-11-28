@@ -118,8 +118,6 @@ export default function InventoryReportsPage() {
             </button>
           ))}
         </div>
-        {activeMeta?.hint ? <div className="raSub invReportHint">{activeMeta.hint}</div> : null}
-
         <div className="mrBody invReportBody" role="tabpanel" id={`inv-panel-${tab}`} aria-labelledby={`inv-tab-${tab}`}>
           {tab === "stock-list" ? <ProductSupplierReportContent embedded /> : null}
           {tab === "mfg-stockist" ? <MfgStockistReportContent embedded /> : null}

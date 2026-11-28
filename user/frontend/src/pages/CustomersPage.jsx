@@ -278,11 +278,6 @@ export default function CustomersPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.customers}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Add your regular customers here. Walk-in / Counter Sale is a built-in billing customer and is shown only while creating bills."
-                : "Manage customer master and credit defaults."}
-            </div>
           </div>
         </div>
         <div className="pageCard">
@@ -657,9 +652,6 @@ export default function CustomersPage() {
                 value={paymentForm.amount}
                 onChange={(e) => setPaymentForm((p) => ({ ...p, amount: e.target.value }))}
               />
-              <div className="sfmHint" style={{ marginTop: 6 }}>
-                With allocations, cash can be ₹0 if customer advance (shown in ledger) covers all lines and “Apply advance first” is on.
-              </div>
             </div>
             <div className="raField">
               <label>Mode</label>
@@ -687,9 +679,7 @@ export default function CustomersPage() {
                   checked={Boolean(paymentForm.useAdvanceFirst)}
                   onChange={(e) => setPaymentForm((p) => ({ ...p, useAdvanceFirst: e.target.checked }))}
                 />
-                <span>
-                  Apply customer advance before cash (each allocated invoice uses advance pools first, oldest payment first; then cash from this receipt).
-                </span>
+                <span>Apply advance first</span>
               </label>
             </div>
           </div>
@@ -698,9 +688,6 @@ export default function CustomersPage() {
             <div className="sfmSectionHead">
               <span className="sfmTitle">Allocate to sales invoices</span>
             </div>
-            <p className="sfmHint">
-              Enter amounts against each bill (oldest first). Any difference between payment amount and allocated total is stored as <strong>on account</strong> advance automatically.
-            </p>
             <div className="custPayAllocToolbar">
               <button
                 className="sfmBtnGhost"
@@ -741,7 +728,7 @@ export default function CustomersPage() {
             {paymentPendingBusy ? (
               <CommonLoading variant="inline" text="Loading outstanding invoices…" />
             ) : paymentPendingInvoices.length === 0 ? (
-              <p className="sfmHint">No confirmed invoices with a balance due. Payment will be recorded entirely as customer advance (on account).</p>
+              <p className="sfmHint">No outstanding invoices — saved as advance.</p>
             ) : (
               <div style={{ overflowX: "auto" }}>
                 <table className="custPayAllocTable">

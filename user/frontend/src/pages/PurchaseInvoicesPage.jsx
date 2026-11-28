@@ -1149,11 +1149,6 @@ export default function PurchaseInvoicesPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{isRetailer ? "Purchases" : NAV_LABELS.purchaseInvoices}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Record stock you purchased from suppliers. Confirm to update batch stock and pricing."
-                : "Create drafts, confirm to post stock, track payments and returns."}
-            </div>
           </div>
         </div>
         <div className="pageCard">
@@ -2237,7 +2232,6 @@ export default function PurchaseInvoicesPage() {
 
           <div className="piReturnItemsHead">
             <div className="sfmTitle">Return Items</div>
-            <div className="sfmHint">Enter return quantity for each line purchased on this invoice.</div>
           </div>
 
           {(returnForm.items || []).length === 0 ? (

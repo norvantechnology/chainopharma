@@ -213,7 +213,6 @@ export default function OrdersPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{isRetailer ? "My Orders" : "Orders"}</div>
-            <div className="raSub">{isRetailer ? "Track placed orders and confirm delivery." : "Manage incoming retailer orders."}</div>
           </div>
         </div>
         <div className="pageCard">
@@ -255,13 +254,7 @@ export default function OrdersPage() {
           setDetailLoading(false);
         }}
         title={selected?.order_number || "Order details"}
-        subtitle={
-          selected
-            ? isRetailer
-              ? "Line items, totals, and delivery milestones."
-              : "Review items and update this incoming order."
-            : undefined
-        }
+        subtitle=""
         size="lg"
         icon={<IconPurchaseOrder />}
         loading={detailLoading}

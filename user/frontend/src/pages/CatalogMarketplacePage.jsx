@@ -285,11 +285,6 @@ export default function CatalogMarketplacePage() {
         <div className="raTop">
           <div>
             <div className="raTitle">Order Products</div>
-            <div className="raSub">
-              {wholesalers.length
-                ? "Browse connected wholesaler products and place an order."
-                : "Connect with a wholesaler first, then order here."}
-            </div>
           </div>
         </div>
         {!busy && !wholesalers.length ? (

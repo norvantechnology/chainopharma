@@ -1206,21 +1206,21 @@
     }
 
     .tblFilterBtn {
-      min-height: 36px;
+      min-height: 44px;
       height: auto;
-      padding: 0 8px;
+      padding: 0 10px;
       gap: 6px;
       border-radius: 10px;
-      font-size: 12.5px;
+      font-size: 13px;
     }
 
     .tblActionBtn {
-      min-height: 36px;
+      min-height: 44px;
       height: auto;
-      padding: 0 8px;
+      padding: 0 10px;
       gap: 6px;
       border-radius: 10px;
-      font-size: 12.5px;
+      font-size: 13px;
     }
 
     .tblFilterBtnIcon svg {
@@ -1483,8 +1483,8 @@
     }
 
     .tblPagerBtn {
-      min-height: 36px;
-      min-width: 40px;
+      min-height: 44px;
+      min-width: 44px;
       height: auto;
       border-radius: 10px;
       flex-shrink: 0;
@@ -1504,15 +1504,15 @@
     }
 
     .tblBulkBtn {
-      min-height: 36px;
-      padding: 0 10px;
-      font-size: 12px;
+      min-height: 44px;
+      padding: 0 12px;
+      font-size: 13px;
     }
 
     .tblPageBtn {
-      min-height: 32px;
-      padding: 0 7px;
-      font-size: 11.5px;
+      min-height: 40px;
+      padding: 0 10px;
+      font-size: 13px;
     }
 
     /* Filter modal / sheet: tighter rhythm on phones */

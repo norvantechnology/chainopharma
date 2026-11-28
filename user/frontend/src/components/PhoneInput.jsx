@@ -62,7 +62,6 @@ export default function PhoneInput({
           </span>
           <div className="telxRibbonText">
             <span className="telxRibbonKicker">Contact</span>
-            <span className="telxRibbonHint">Include the country prefix when you enter a number.</span>
           </div>
         </header>
       ) : null}

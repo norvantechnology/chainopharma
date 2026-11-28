@@ -815,7 +815,7 @@ export default function ProductBatchModal({
                       </div>
                     ) : null}
                     {!errors.expiryDate && clean(form.expiryDate) && isValidDateYmd(form.expiryDate) && !isFutureDateYmd(form.expiryDate) ? (
-                      <div className="pbmWarn">This batch is already expired. It will be marked as EXPIRED status.</div>
+                      <div className="pbmWarn">Expired — will save as EXPIRED.</div>
                     ) : null}
                   </div>
                   <div className="mfzField mfz6">
@@ -1184,7 +1184,7 @@ export default function ProductBatchModal({
                     <input className="mfzInput" value={form.holdReason || ""} disabled={busy || readOnly} onChange={(e) => setField("holdReason", e.target.value)} />
                   </div>
                 ) : null}
-                {form.isControl ? <div className="mfz12 pbmWarn">Controlled  prescription required at billing.</div> : null}
+                {form.isControl ? <div className="mfz12 pbmWarn">Controlled — Rx required at billing.</div> : null}
               </div>
             </div>
           ) : null}

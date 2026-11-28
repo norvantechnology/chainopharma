@@ -290,10 +290,10 @@ export default function MfgCompanyMasterModal({
         title="Enable Sale Lock?"
         message={
           saleLockPrompt.activeBatchCount > 0
-            ? `Enabling Sale Lock blocks sales across ${saleLockPrompt.productCount} product(s) and ${saleLockPrompt.activeBatchCount} active batch(es).`
-            : "Enabling Sale Lock will block all future sales for this manufacturer."
+            ? `Block sales for ${saleLockPrompt.productCount} product(s) / ${saleLockPrompt.activeBatchCount} batch(es)?`
+            : "Block all future sales for this manufacturer?"
         }
-        hint="Draft invoices can still be created, but confirmation will be blocked until lock is removed."
+        hint=""
         confirmLabel="Enable lock"
         cancelLabel="Cancel"
         danger
@@ -394,7 +394,6 @@ function MfgCompanyFormV2({
                     </option>
                   ))}
                 </select>
-                <div className="mfzHelp">Use this to group multiple manufacturers under one parent.</div>
               </div>
             </div>
           </div>
@@ -424,9 +423,7 @@ function MfgCompanyFormV2({
             ) : null}
           </div>
           <div className="mfzPanelBody">
-            {isEdit && !changePassword ? (
-              <div className="mfzNote">Password unchanged.</div>
-            ) : (
+            {isEdit && !changePassword ? null : (
               <div className="mfzGrid">
                 <div className="mfzField mfz12">
                   <div className="mfzLabel">Password (optional)</div>
@@ -462,7 +459,6 @@ function MfgCompanyFormV2({
           <div className="mfzPanelHead">
             <div>
               <div className="mfzHeadKicker">Email routing</div>
-              <div className="mfzHeadHint">Use comma, semicolon, or new line to add multiple emails.</div>
             </div>
           </div>
           <div className="mfzPanelBody">
@@ -517,7 +513,6 @@ function MfgCompanyFormV2({
                 <input type="checkbox" checked={form.purchaseOrderLock} onChange={(e) => setField("purchaseOrderLock", e.target.checked)} />
                 <span>
                   Purchase lock
-                  <span className="mfgCheckDesc">Blocks confirming purchase invoices for this manufacturer.</span>
                 </span>
               </label>
               <label className="mfzCheck">
@@ -556,7 +551,6 @@ function MfgCompanyFormV2({
                 <input type="checkbox" checked={form.preventExpiryDamageProduct} onChange={(e) => setField("preventExpiryDamageProduct", e.target.checked)} />
                 <span>
                   Prevent expiry/damage entries
-                  <span className="mfgCheckDesc">Disable expiry/damage entries for this manufacturer.</span>
                 </span>
               </label>
             </div>
@@ -580,7 +574,6 @@ function MfgCompanyFormV2({
                 <div className="mfzLabel">Out day limit</div>
                 <input className="mfzInput" value={form.outDayLimit} onChange={(e) => setField("outDayLimit", e.target.value)} inputMode="numeric" placeholder="e.g. 30" />
                 {errors.outDayLimit ? <div className="mfzErr">{errors.outDayLimit}</div> : null}
-                <div className="mfzHelp">Maximum overdue age (days).</div>
               </div>
               <div className="mfzField mfz4">
                 <div className="mfzLabel">Credit limit</div>

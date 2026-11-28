@@ -184,9 +184,7 @@ function Gstr1Panel({ dateFrom, dateTo }) {
   return (
     <ReportCard busy={busy}>
       {!busy && loadedOnce && !(data?.b2b?.length || data?.b2c?.length || data?.cdn?.length) ? (
-        <div className="mrHint">
-          No confirmed sales invoices in this period. Try a wider date range, then tap <strong>Apply</strong>.
-        </div>
+        <div className="mrHint">No sales in this period.</div>
       ) : null}
       <SummaryGrid
         items={[
@@ -197,20 +195,22 @@ function Gstr1Panel({ dateFrom, dateTo }) {
           { label: "HSN groups", value: s.hsn_count ?? "—" }
         ]}
       />
-      <div className="mrTabs mrTabs_scroll" role="tablist" aria-label="GSTR-1 sections">
-        {sectionMeta.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            role="tab"
-            aria-selected={section === t.id}
-            className={`mrTab${section === t.id ? " mrTab_active" : ""}`}
-            onClick={() => setSection(t.id)}
-          >
-            {t.label}
-            <span className="mrTabCount">{t.count}</span>
-          </button>
-        ))}
+      <div className="mrTabsBar">
+        <div className="mrTabs mrTabs_scroll" role="tablist" aria-label="GSTR-1 sections">
+          {sectionMeta.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={section === t.id}
+              className={`mrTab${section === t.id ? " mrTab_active" : ""}`}
+              onClick={() => setSection(t.id)}
+            >
+              {t.label}
+              <span className="mrTabCount">{t.count}</span>
+            </button>
+          ))}
+        </div>
         <div className="mrTabsActions">
           <AsyncButton variant="ghost" size="sm" type="button" onClick={exportCsv} disabled={!rows.length}>
             Export CSV
@@ -319,9 +319,7 @@ function Gstr2Panel({ dateFrom, dateTo }) {
   return (
     <ReportCard busy={busy}>
       {!busy && loadedOnce && !(data?.b2b?.length || data?.cdn?.length) ? (
-        <div className="mrHint">
-          No confirmed purchase invoices in this period. Try a wider date range, then tap <strong>Apply</strong>.
-        </div>
+        <div className="mrHint">No purchases in this period.</div>
       ) : null}
       <SummaryGrid
         items={[
@@ -332,20 +330,22 @@ function Gstr2Panel({ dateFrom, dateTo }) {
           { label: "HSN groups", value: s.hsn_count ?? "—" }
         ]}
       />
-      <div className="mrTabs mrTabs_scroll" role="tablist" aria-label="GSTR-2 sections">
-        {sectionMeta.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            role="tab"
-            aria-selected={section === t.id}
-            className={`mrTab${section === t.id ? " mrTab_active" : ""}`}
-            onClick={() => setSection(t.id)}
-          >
-            {t.label}
-            <span className="mrTabCount">{t.count}</span>
-          </button>
-        ))}
+      <div className="mrTabsBar">
+        <div className="mrTabs mrTabs_scroll" role="tablist" aria-label="GSTR-2 sections">
+          {sectionMeta.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              role="tab"
+              aria-selected={section === t.id}
+              className={`mrTab${section === t.id ? " mrTab_active" : ""}`}
+              onClick={() => setSection(t.id)}
+            >
+              {t.label}
+              <span className="mrTabCount">{t.count}</span>
+            </button>
+          ))}
+        </div>
         <div className="mrTabsActions">
           <AsyncButton variant="ghost" size="sm" type="button" onClick={exportCsv} disabled={!rows.length}>
             Export CSV
@@ -504,8 +504,6 @@ export default function GstReportsPage() {
             </button>
           ))}
         </div>
-        {activeHint ? <div className="raSub gstTabHint">{activeHint}</div> : null}
-
         <div className="mrBody" role="tabpanel">
           {tab === "gstr1" && canSales ? <Gstr1Panel dateFrom={applied.from} dateTo={applied.to} /> : null}
           {tab === "gstr2" && canPurchase ? <Gstr2Panel dateFrom={applied.from} dateTo={applied.to} /> : null}

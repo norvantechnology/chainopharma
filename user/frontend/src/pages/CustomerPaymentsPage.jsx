@@ -146,7 +146,7 @@ export default function CustomerPaymentsPage() {
   return (
     <AppShell userName={user?.full_name || "User"} userEmail={user?.email || auth?.email || ""} userBusinessName={user?.firm_name || ""} userGstNumber={user?.gst_number || ""} variant="user">
       <div className="pageWrap">
-        <div className="raTop"><div><div className="raTitle">{NAV_LABELS.customerPayments}</div><div className="raSub">Track and record customer payments.</div></div></div>
+        <div className="raTop"><div><div className="raTitle">{NAV_LABELS.customerPayments}</div></div></div>
         <div className="pageCard">
           <CommonTable
             title=""
@@ -196,8 +196,8 @@ export default function CustomerPaymentsPage() {
 
       <CommonModal
         open={open}
-        title="Record Customer Payment"
-        subtitle={paymentKind === "ON_ACCOUNT" ? "Advance payment" : "Invoice payment"}
+        title={paymentKind === "ON_ACCOUNT" ? "Record Advance" : "Record Payment"}
+        subtitle=""
         icon={paymentKind === "ON_ACCOUNT" ? <IconAdvancePayment /> : <IconWallet />}
         onClose={closePaymentModal}
         footer={<div className="sfmModalFooter"><button className="sfmBtnGhost" type="button" onClick={closePaymentModal} disabled={busy}>Cancel</button><button className="sfmBtnPrimary" type="button" disabled={busy || !form.customerId || (!form.salesInvoiceId && !(Number(form.amount) > 0))} onClick={async () => {
@@ -266,9 +266,6 @@ export default function CustomerPaymentsPage() {
           <div className="raField">
             <label>Cash received now <span className="reqMark" aria-hidden="true">*</span></label>
             <input className="raInput" type="number" min="0" value={form.amount} disabled={Boolean(form.salesInvoiceId) && Boolean(form.useAdvanceFirst)} onChange={(e) => setForm((p) => ({ ...p, amount: e.target.value }))} />
-            {form.salesInvoiceId && form.useAdvanceFirst ? (
-              <div className="sfmHint" style={{ marginTop: 6 }}>If advance fully covers the due, cash can stay ₹0.</div>
-            ) : null}
           </div>
           <div className="raField"><label>Mode</label><select className="raInput" value={form.paymentMode} onChange={(e) => setForm((p) => ({ ...p, paymentMode: e.target.value }))}><option>CASH</option><option>CHEQUE</option><option>NEFT</option><option>UPI</option><option>CARD</option><option>OTHER</option></select></div>
           <div className="raField"><label>Reference</label><input className="raInput" value={form.referenceNumber} onChange={(e) => setForm((p) => ({ ...p, referenceNumber: e.target.value }))} /></div>

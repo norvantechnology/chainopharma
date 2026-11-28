@@ -559,21 +559,22 @@
   }
 
   .cmpOrderStepPill {
-    padding: 5px 7px;
-    gap: 5px;
-    border-radius: 9px;
-    min-height: 34px;
+    padding: 8px 10px;
+    gap: 6px;
+    border-radius: 10px;
+    min-height: 44px;
   }
 
   .cmpStepNum {
-    width: 19px;
-    height: 19px;
-    font-size: 10px;
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
   }
 
   .cmpStepLabel {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.02em;
+    display: inline;
   }
 
   .cmpOrderContextMuted {
@@ -705,19 +706,20 @@
   }
 
   .cmpOrderStepPill {
-    padding: 4px 6px;
-    min-height: 32px;
-    gap: 4px;
+    padding: 8px 10px;
+    min-height: 44px;
+    gap: 6px;
   }
 
   .cmpStepNum {
-    width: 18px;
-    height: 18px;
-    font-size: 9px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
   }
 
   .cmpStepLabel {
-    font-size: 8.5px;
+    font-size: 10.5px;
+    display: inline;
   }
 
   .cmpOrderNotesReadonly {
@@ -736,19 +738,20 @@
   }
 
   .cmpOrderStepPill {
-    padding: 3px 5px;
-    min-height: 28px;
-    gap: 3px;
+    padding: 8px 9px;
+    min-height: 40px;
+    gap: 5px;
   }
 
   .cmpStepNum {
-    width: 16px;
-    height: 16px;
-    font-size: 8.5px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
   }
 
   .cmpStepLabel {
-    font-size: 8px;
+    font-size: 10px;
+    display: inline;
   }
 
   .cmpOrderEmpty {

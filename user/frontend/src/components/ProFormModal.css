@@ -493,7 +493,7 @@
     grid-template-columns: 1fr;
   }
   .pfmGrid3 {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .pfmFooterActions {
     width: 100%;
@@ -545,8 +545,8 @@
   .pfmFooterActions .sfmBtnGhost,
   .pfmFooterActions .sfmBtnPrimary,
   .pfmFooterActions .sfmBtnDanger {
-    min-height: 36px;
-    font-size: 12.5px;
+    min-height: 44px;
+    font-size: 14px;
   }
 }
 
@@ -554,8 +554,17 @@
   .pfmGrid3 {
     grid-template-columns: 1fr;
   }
+  .pfmTabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+  .pfmTabBtn {
+    flex: 0 0 auto;
+    min-height: 40px;
+  }
   .pfmTabBtn span {
-    display: none;
+    display: inline;
   }
 }
 

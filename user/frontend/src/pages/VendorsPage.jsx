@@ -159,11 +159,6 @@ export default function VendorsPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.vendors}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Local wholesalers and distributors you purchase stock from."
-                : "Manage vendors, rack numbers, and key details."}
-            </div>
           </div>
         </div>
 

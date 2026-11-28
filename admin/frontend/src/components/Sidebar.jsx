@@ -200,7 +200,12 @@ export default function Sidebar({
 
   return (
     <>
-      <div className={`overlay ${mobileOpen ? "visible" : ""}`} onClick={onCloseMobile} aria-hidden={!mobileOpen} />
+      <div
+        className={`overlay ${mobileOpen ? "visible" : ""}`}
+        onClick={mobileOpen ? onCloseMobile : undefined}
+        aria-hidden={!mobileOpen}
+        tabIndex={-1}
+      />
 
       <aside
         className={`sidebar ${collapsed ? "collapsed" : ""} ${mobileOpen ? "mobile-open" : ""}`}

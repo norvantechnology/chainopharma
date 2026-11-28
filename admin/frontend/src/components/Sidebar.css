@@ -8,7 +8,7 @@
   --sidebar-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Mobile overlay */
+/* Mobile overlay — must NOT intercept taps when closed (opacity:0 still receives clicks). */
 .overlay {
   display: none;
   position: fixed;
@@ -16,11 +16,17 @@
   background: rgba(15, 23, 42, 0.35);
   z-index: 190;
   opacity: 0;
-  transition: opacity 0.25s;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .overlay.visible {
+  display: block;
   opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s linear 0s;
 }
 
 /* No extra mobile header: hamburger lives in the top header. */
@@ -481,7 +487,19 @@
     display: none;
   }
 
+  .sidebar {
+    pointer-events: none;
+  }
+
+  .sidebar.mobile-open {
+    pointer-events: auto;
+  }
+
   .overlay {
+    display: none;
+  }
+
+  .overlay.visible {
     display: block;
   }
 }

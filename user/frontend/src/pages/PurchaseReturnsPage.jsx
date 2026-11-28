@@ -83,11 +83,6 @@ export default function PurchaseReturnsPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.purchaseReturns}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Return stock to suppliers from confirmed purchase invoices."
-                : "View and confirm purchase return entries."}
-            </div>
           </div>
         </div>
         <div className="pageCard">

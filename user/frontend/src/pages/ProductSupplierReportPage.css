@@ -558,11 +558,13 @@
   opacity: 0;
   transition: opacity 0.22s ease;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .psrModalBackdrop_show {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 @media (min-width: 700px) {
@@ -669,8 +671,10 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--color-on-primary) 18%, transparent);
   border: none;
@@ -1797,6 +1801,7 @@
   inset: 0;
   background: var(--overlay-scrim);
   z-index: 500;
+  visibility: hidden;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1807,7 +1812,8 @@
 
 .psr-product-modal.modal-backdrop.show {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 @media (min-width: 700px) {

@@ -132,13 +132,22 @@
   }
   .mcTabs {
     position: static;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    scrollbar-width: thin;
   }
   .mcTabBtn {
     text-align: center;
+    flex: 0 0 auto;
+    min-width: 120px;
+    min-height: 44px;
   }
   .mcTabHint {
-    display: none;
+    display: block;
+    font-size: 11px;
   }
   .mcChecks_two {
     grid-template-columns: 1fr;

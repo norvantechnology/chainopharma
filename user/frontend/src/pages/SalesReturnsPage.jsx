@@ -206,8 +206,8 @@ export default function SalesReturnsPage() {
 
   return (
     <AppShell userName={user?.full_name || "User"} userEmail={user?.email || auth?.email || ""} userBusinessName={user?.firm_name || ""} userGstNumber={user?.gst_number || ""} variant="user">
-      <div className="pageWrap">
-        <div className="raTop"><div><div className="raTitle">{NAV_LABELS.salesReturns}</div><div className="raSub">{isRetailer ? "Counter returns. Pick the original bill, then enter return quantities." : "Create and confirm sales return entries."}</div></div></div>
+        <div className="pageWrap">
+        <div className="raTop"><div><div className="raTitle">{NAV_LABELS.salesReturns}</div></div></div>
         <div className="pageCard">
           <CommonTable
             title=""
@@ -301,7 +301,7 @@ export default function SalesReturnsPage() {
       <CommonModal
         open={open}
         title={modalLoading ? "Opening return…" : isRetailer ? "Create Counter Return" : "Create Sales Return"}
-        subtitle={modalLoading ? "Loading invoice lines" : isRetailer ? "Pick the original bill, then return quantities. Confirm to post stock back." : "Draft return; confirm to post SALE_RETURN stock."}
+        subtitle=""
         icon={<IconSalesReturn />}
         loading={modalLoading}
         loadingText="Loading invoice lines…"
@@ -313,7 +313,6 @@ export default function SalesReturnsPage() {
         size="lg"
         footer={
           <div className="sfmModalFooter">
-            <div className="srmFooterMeta sfmModalMeta">Fill header first, then return quantities. Only positive return qty is included.</div>
             <button
               className="sfmBtnGhost"
               type="button"
@@ -380,24 +379,12 @@ export default function SalesReturnsPage() {
                   </option>
                 ))}
             </select>
-            {isRetailer ? (
-              <div className="raHint" style={{ fontSize: 11, color: "var(--color-text-3)", marginTop: 4 }}>
-                Walk-ins rarely keep their bill. Leave blank and add product, batch and qty manually below.
-              </div>
-            ) : null}
           </div>
           <div className="raField"><label>Return Date <span className="reqMark" aria-hidden="true">*</span></label><CommonDatePicker value={form.returnDate} onChange={(v) => setForm((p) => ({ ...p, returnDate: v }))} ariaLabel="Return date" /></div>
           <div className="raField"><label>Reason</label><select className="raInput" value={form.returnReason} onChange={(e) => setForm((p) => ({ ...p, returnReason: e.target.value }))}><option>DAMAGED</option><option>EXPIRED</option><option>WRONG_PRODUCT</option><option>EXCESS</option><option>PATIENT_RETURNED</option><option>OTHER</option></select></div>
           <div className="raField sfmFull"><label>Notes</label><input className="raInput" value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))} /></div>
           <div className="sfmFull srmItemsHead">
             <div className="sfmTitle">Return Items</div>
-            <div className="sfmHint">
-              {form.salesInvoiceId
-                ? "Set return quantity for each line."
-                : isRetailer
-                  ? "No invoice linked. Add the product, batch and quantity returned across the counter."
-                  : "Set return quantity for each line."}
-            </div>
           </div>
           {(form.items || []).map((it, idx) => {
             const isManualLine = Boolean(it.manual) || (!form.salesInvoiceId && isRetailer);

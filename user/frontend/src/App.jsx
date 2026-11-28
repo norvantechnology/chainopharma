@@ -3,6 +3,8 @@ import "./styles/theme.css";
 import "./styles/animations.css";
 import "./styles/app.css";
 import "./styles/buttons-responsive.css";
+import "./styles/mobile-ui-polish.css";
+import "./styles/modal-clean.css";
 import { useEffect, useState } from "react";
 import { APP_DOCUMENT_TITLE } from "./constants/brand.js";
 import { bootstrapAuth } from "./services/authBootstrap.js";

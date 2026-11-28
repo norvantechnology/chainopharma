@@ -235,8 +235,9 @@
   .cpd_statsRow {
     grid-template-columns: repeat(2, 1fr);
   }
+  .cpd_span6,
   .cpd_span4 {
-    grid-column: span 6;
+    grid-column: span 12;
   }
 }
 

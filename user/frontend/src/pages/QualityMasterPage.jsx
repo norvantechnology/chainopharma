@@ -462,11 +462,6 @@ export default function QualityMasterPage() {
         <div className="qmTopRow">
           <div>
             <div className="raTitle">{NAV_LABELS.qualityMaster}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Your shop catalog. Track batches for expiry, MRP and stock  open a product to manage its batches."
-                : "Catalog products (SKUs). Batches track expiry, pricing and stock per lot  open a product to manage its batches."}
-            </div>
           </div>
         </div>
 
@@ -986,18 +981,10 @@ export default function QualityMasterPage() {
         title={batchDrawer ? `Batches  ${batchDrawer.product?.name || ""}` : "Batches"}
         subtitle={
           batchDrawer
-            ? (() => {
-                const p = batchDrawer.product || {};
-                const pieces = [
-                  `Code ${p.code || ""}`,
-                  p.division_name ? `Division: ${p.division_name}${p.mfg_short_name || p.mfg_company_name ? ` (${p.mfg_short_name || p.mfg_company_name})` : ""}` : p.mfg_company_name ? `Mfg: ${p.mfg_company_name}` : "",
-                  p.sales_gst != null && p.sales_gst !== "" ? `GST: ${p.sales_gst}%` : "",
-                  p.sales_scheme ? `Scheme: ${p.sales_scheme}` : "",
-                  p.packing ? `Packing: ${p.packing}` : "",
-                  `${batchRows.length} lot(s)`
-                ].filter(Boolean);
-                return pieces.join(" · ");
-              })()
+            ? [
+                batchDrawer.product?.code ? `Code ${batchDrawer.product.code}` : "",
+                `${batchRows.length} lot(s)`
+              ].filter(Boolean).join(" · ")
             : ""
         }
         icon={<IconProducts />}
@@ -1009,9 +996,7 @@ export default function QualityMasterPage() {
           <div className="qmBatchDrawerFooter">
             {canDelete && batchRows.length > 0 ? (
               <p className="qmBatchDrawerHint">
-                {selectedBatchIds.length > 0
-                  ? `${selectedBatchIds.length} batch(es) selected  use Delete selected or row actions.`
-                  : "Tip: use checkboxes to soft-delete several batches at once."}
+                {selectedBatchIds.length > 0 ? `${selectedBatchIds.length} selected` : ""}
               </p>
             ) : (
               <span className="qmBatchDrawerHint" />
@@ -1375,11 +1360,7 @@ export default function QualityMasterPage() {
                 ? `Soft-delete batch “${confirm.name}”?`
                 : "Soft-delete this batch?"
         }
-        hint={
-          confirm.kind === "product"
-            ? "Soft delete only: past invoices and history keep their references. You can create a new product with the same code later if needed."
-            : "Soft delete: records are hidden, not destroyed."
-        }
+        hint="Soft delete — history is kept."
         confirmLabel="Delete"
         cancelLabel="Cancel"
         danger

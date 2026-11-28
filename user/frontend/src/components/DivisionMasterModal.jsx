@@ -183,18 +183,17 @@ export default function DivisionMasterModal({
 
                 {selectedMfg ? (
                   <div className="mfz12">
-                    <div className="mfzNote mfzNoteStrong">
-                      <strong>{selectedMfg.name}</strong>
-                      <div className="mfzHelp mfzTop12">
-                        {[
-                          selectedMfg.sale_lock ? "Sale locked" : "",
-                          selectedMfg.purchase_order_lock ? "Purchase locked" : "",
-                          selectedMfg.prevent_discount ? "No discount" : "",
-                          Number(selectedMfg.credit_limit || 0) > 0 ? `Credit ₹${Number(selectedMfg.credit_limit).toFixed(0)}` : ""
-                        ]
-                          .filter(Boolean)
-                          .join(" · ") || "No restriction flags set"}
-                      </div>
+                    <div className="mfzChips">
+                      {[
+                        selectedMfg.sale_lock ? "Sale locked" : "",
+                        selectedMfg.purchase_order_lock ? "Purchase locked" : "",
+                        selectedMfg.prevent_discount ? "No discount" : "",
+                        Number(selectedMfg.credit_limit || 0) > 0 ? `Credit ₹${Number(selectedMfg.credit_limit).toFixed(0)}` : ""
+                      ]
+                        .filter(Boolean)
+                        .map((t) => (
+                          <span key={t} className="mfzChip">{t}</span>
+                        ))}
                     </div>
                   </div>
                 ) : null}

@@ -53,7 +53,6 @@ export default function PrescriptionsPage() {
           <div className="raTop">
             <div>
               <div className="raTitle">{NAV_LABELS.prescriptions || "Prescriptions"}</div>
-              <div className="raSub">Patient prescriptions linked to sales invoices.</div>
             </div>
           </div>
           <div className="pageCard">

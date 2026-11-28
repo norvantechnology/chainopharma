@@ -507,8 +507,30 @@
       overscroll-behavior: contain;
     }
 
-    .nfyHeadBtn span { display: none; }
-    .nfyHeadBtn { padding: 0 7px; }
+    .nfyHeadBtn {
+      min-height: 40px;
+      height: auto;
+      padding: 0 12px;
+      gap: 6px;
+    }
+
+    .nfyHeadBtn span {
+      display: inline;
+    }
+
+    .nfyCloseBtn {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+    }
+
+    .nfyBtn {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+    }
   }
   
   @media (prefers-reduced-motion: reduce) {

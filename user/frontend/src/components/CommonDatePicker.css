@@ -451,14 +451,16 @@
   }
 
   .cdpNavBtn {
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 10px;
   }
 
   .cdpNavBtn svg {
-    width: 13px;
-    height: 13px;
+    width: 16px;
+    height: 16px;
   }
 
   .cdpPanel {
@@ -476,15 +478,17 @@
   }
 
   .cdpYearPager {
-    grid-template-columns: 30px 1fr 30px;
+    grid-template-columns: 40px 1fr 40px;
     gap: 6px;
     margin-bottom: 6px;
   }
 
   .cdpYearPagerBtn {
-    width: 30px;
-    height: 30px;
-    border-radius: 9px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 10px;
   }
 
   .cdpGridWrap {
@@ -511,8 +515,14 @@
 
   .cdpTodayBtn,
   .cdpClearBtn {
-    font-size: 11.5px;
-    padding: 4px 9px;
+    min-height: 40px;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .cdpInput {
+    min-height: 44px;
+    font-size: 16px;
   }
 }
 

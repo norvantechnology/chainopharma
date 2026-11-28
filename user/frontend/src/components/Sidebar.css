@@ -9,7 +9,7 @@
   --sidebar-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Mobile overlay */
+/* Mobile overlay — must NOT intercept taps when closed (opacity:0 still receives clicks). */
 .overlay {
   display: none;
   position: fixed;
@@ -17,11 +17,17 @@
   background: rgba(15, 23, 42, 0.35);
   z-index: 190;
   opacity: 0;
-  transition: opacity 0.25s;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .overlay.visible {
+  display: block;
   opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.25s ease, visibility 0s linear 0s;
 }
 
 /* Safety: never allow the mobile overlay to block desktop navigation */
@@ -30,6 +36,7 @@
   .overlay.visible {
     display: none !important;
     pointer-events: none !important;
+    visibility: hidden !important;
   }
 }
 
@@ -480,18 +487,26 @@
     width: var(--sidebar-w) !important;
     transition: transform var(--sidebar-transition), box-shadow var(--sidebar-transition);
     box-shadow: none;
+    /* Off-canvas drawer must not steal taps from the page */
+    pointer-events: none;
   }
 
   .sidebar.mobile-open {
     transform: translateX(0);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
   }
 
   .sidebar-toggle {
     display: none;
   }
 
+  /* Only show overlay while the drawer is open — never leave a full-screen hit target up */
   .overlay {
+    display: none;
+  }
+
+  .overlay.visible {
     display: block;
   }
 }

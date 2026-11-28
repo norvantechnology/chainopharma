@@ -118,7 +118,6 @@ export default function MfgCompaniesPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{NAV_LABELS.mfgCompanies}</div>
-            <div className="raSub">Manage manufacturers and enforce company-wise locks and limits.</div>
           </div>
         </div>
 

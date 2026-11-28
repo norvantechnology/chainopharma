@@ -97,6 +97,17 @@
 @media (max-width: 768px) {
   .appShell2Main {
     margin-left: 0 !important;
+    position: relative;
+    z-index: 1;
+    /* Ensure page content stays interactive when the drawer is closed */
+    pointer-events: auto;
+  }
+
+  .appShell2Content {
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 }
 

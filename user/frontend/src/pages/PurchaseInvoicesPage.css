@@ -414,6 +414,17 @@
   border-radius: 8px;
 }
 
+@media (max-width: 768px) {
+  .piTrashBtn.lineRemoveBtn,
+  .piTrashBtn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    border-radius: 10px;
+  }
+}
+
 .piItemRow {
   transition: background 0.15s ease;
 }
@@ -1213,24 +1224,24 @@
   /* Inputs in card rows: touch-friendly height */
   .piModalForm .piItemsTable td .raInput,
   .piModalForm .piItemsTable td input:not([type="checkbox"]) {
-    min-height: 38px !important;
-    height: 38px !important;
-    font-size: 13px;
+    min-height: 44px !important;
+    height: 44px !important;
+    font-size: 16px;
     padding: 0 10px;
   }
   .piModalForm .piItemsTable td select.piLineSelect,
   .piModalForm .piItemsTable td .piLineSelect {
-    min-height: 38px;
-    height: 38px;
-    font-size: 13px;
+    min-height: 44px;
+    height: 44px;
+    font-size: 16px;
   }
 
   /* Expiry label: full width in its cell */
   .piExpiryLabel {
     width: 100%;
-    min-height: 38px;
+    min-height: 44px;
     height: auto;
-    padding: 6px 10px;
+    padding: 8px 10px;
   }
 
   /* Stock pill: left-align in its cell */

@@ -166,9 +166,9 @@
   }
 
   .cdlgBtn {
-    min-height: 36px;
-    padding: 0 10px;
-    font-size: clamp(12px, 3.2vw, 13.5px);
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
   }
 
   .cdlgMark svg {
@@ -221,9 +221,9 @@
     border-radius: 11px;
   }
   .cdlgBtn {
-    min-height: 34px;
-    padding: 0 9px;
-    font-size: 12.5px;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
   }
 }
 

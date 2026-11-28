@@ -346,10 +346,10 @@
     gap: 6px;
   }
   .mfzBtn {
-    min-height: 34px;
-    padding: 0 10px;
+    min-height: 44px;
+    padding: 0 12px;
     border-radius: 10px;
-    font-size: 12.5px;
+    font-size: 14px;
   }
 }
 
@@ -390,13 +390,13 @@
   .mfzInput, .mfzTextarea { min-height: 36px; border-radius: 11px; }
   .mfzInput { font-size: 13px; padding: 0 8px; }
   .mfzBtn {
-    min-height: 32px;
-    padding: 0 9px;
-    font-size: 12px;
-    border-radius: 9px;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+    border-radius: 10px;
   }
   .mfzLabel {
-    font-size: 10.5px;
+    font-size: 11px;
   }
 }
 

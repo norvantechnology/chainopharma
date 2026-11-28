@@ -127,9 +127,6 @@ export default function VendorPaymentsPage() {
   }, [isRetailer, vendors, divisions, partyFilter]);
 
   const pageTitle = isRetailer ? "Supplier Payments" : NAV_LABELS.divisionPayments;
-  const pageSubtitle = isRetailer
-    ? "Money paid to your suppliers, against purchase bills."
-    : "Payments recorded against purchase invoices (by division).";
   const invoiceOptions = useMemo(() => {
     return (invoices || []).filter((x) => String(x.status || "").toUpperCase() === "CONFIRMED" && Number(x.balance_due || 0) > 0);
   }, [invoices]);
@@ -153,7 +150,6 @@ export default function VendorPaymentsPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{pageTitle}</div>
-            <div className="raSub">{pageSubtitle}</div>
           </div>
         </div>
         <div className="pageCard">
@@ -233,8 +229,12 @@ export default function VendorPaymentsPage() {
       </div>
       <CommonModal
         open={open}
-        title={isRetailer ? "Record Supplier Payment" : "Record Division Payment"}
-        subtitle={paymentKind === "ON_ACCOUNT" ? "Advance / on-account payment" : "Invoice payment"}
+        title={
+          paymentKind === "ON_ACCOUNT"
+            ? (isRetailer ? "Record Supplier Advance" : "Record Division Advance")
+            : (isRetailer ? "Record Supplier Payment" : "Record Division Payment")
+        }
+        subtitle=""
         icon={paymentKind === "ON_ACCOUNT" ? <IconAdvancePayment /> : <IconWallet />}
         onClose={() => (busy ? null : setOpen(false))}
         footer={(

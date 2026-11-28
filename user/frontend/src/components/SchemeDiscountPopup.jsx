@@ -197,8 +197,7 @@ export default function SchemeDiscountPopup({ open, onClose, item, onApply, line
                 </span>
                 <div>
                   <p className="sdpSchemeKicker">Batch scheme</p>
-                  <p className="sdpSchemeTitle">{batchScheme.label} (paid + free)</p>
-                  <p className="sdpSchemeHint">Fills free quantity from quantity sold, using this batch rule.</p>
+                  <p className="sdpSchemeTitle">{batchScheme.label}</p>
                 </div>
               </div>
               <AppButton
@@ -240,7 +239,6 @@ export default function SchemeDiscountPopup({ open, onClose, item, onApply, line
                 disabled={restrictions.freeQty}
                 onChange={(e) => setFreeQty(Number(e.target.value || 0))}
               />
-              <p className="mfzHelp">Stock movement; not billed as paid units.</p>
             </div>
             <div className="mfzField mfz4">
               <label htmlFor="sdp-pct">Discount %</label>

@@ -63,11 +63,22 @@
   opacity: 0.7;
 }
 
-@media (max-width: 520px) {
-  .qst {
-    height: 36px;
+@media (max-width: 768px) {
+  .qst,
+  .qst_sm {
+    height: 44px;
     border-radius: 12px;
   }
-  .qstInput { width: 52px; }
+
+  .qstBtn,
+  .qst_sm .qstBtn {
+    min-width: 44px;
+  }
+
+  .qstInput,
+  .qst_sm .qstInput {
+    width: 56px;
+    font-size: 16px;
+  }
 }
 

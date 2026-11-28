@@ -1,0 +1,62 @@
+/**
+ * Modal / form cleanliness — reduce instructional noise so Add/Edit dialogs
+ * stay scannable. Errors and validation stay visible.
+ */
+
+/* Hide empty modal subtitles */
+.cmSub:empty {
+  display: none !important;
+}
+
+/* Soften remaining helper copy; keep errors bold */
+.sfmHint,
+.mfzHeadHint,
+.mfzHelp,
+.mfzNote,
+.cliSectionHint,
+.sbmCashHint,
+.sbmSectionHint,
+.piSectionHint,
+.piSummaryHint,
+.sdpSchemeHint,
+.ciwHint,
+.ciwLead,
+.ciwDropSub,
+.qmBatchDrawerHint,
+.telxRibbonHint,
+.cdlgHint,
+.srmFooterMeta,
+.sfmModalMeta,
+.raHint,
+.invReportHint,
+.mrHint,
+.gstTabHint,
+.mfgCheckDesc {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--color-text-3);
+  font-weight: 550;
+}
+
+.mfzNote {
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.mfzHeadHint,
+.mfgCheckDesc,
+.sbmCashHint,
+.ciwHint,
+.sdpSchemeHint {
+  margin-top: 2px;
+}
+
+/* Page intros: title only by default — empty raSub collapses */
+.raTop .raSub:empty {
+  display: none;
+}
+
+/* Confirm dialog hints stay compact */
+.cdlgHint {
+  margin-top: 6px;
+}

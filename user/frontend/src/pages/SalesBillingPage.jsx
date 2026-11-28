@@ -1397,11 +1397,6 @@ export default function SalesBillingPage() {
         <div className="raTop">
           <div>
             <div className="raTitle">{isRetailer ? "Billing" : NAV_LABELS.salesBilling}</div>
-            <div className="raSub">
-              {isRetailer
-                ? "Counter sales. Confirm posts stock; choose whether to record full cash payment on the bill or leave it due for later."
-                : "Create draft invoices and confirm to post stock."}
-            </div>
           </div>
           <div style={{ display: "flex", gap: 8 }}>
             <button
@@ -2292,9 +2287,6 @@ export default function SalesBillingPage() {
                   >
                     ₹{cashChange}
                   </div>
-                </div>
-                <div className="sbmCashHint sfmFull">
-                  For change only. To record full cash against the bill use <strong>Confirm &amp; Mark Paid</strong>; use <strong>Create &amp; Confirm</strong> to leave the sale unpaid.
                 </div>
               </div>
             ) : null}

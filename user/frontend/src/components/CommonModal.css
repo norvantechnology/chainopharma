@@ -135,14 +135,60 @@
   border-color: var(--cm-input-border);
 }
 
+@media (max-width: 768px) {
+  .cmRoot {
+    padding: 0;
+    place-items: stretch;
+    align-items: stretch;
+  }
+
+  .cmPanel {
+    width: 100%;
+    max-width: 100vw;
+    max-height: 100dvh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .cmHeader {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .cmTitle {
+    font-size: clamp(14px, 3.8vw, 16px);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .cmSub {
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .cmClose {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cmBody {
+    padding: 12px;
+  }
+
+  .cmFooter {
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @media (max-width: 520px) {
   .cmBody {
-    padding: 14px;
+    padding: 12px;
   }
   .cmHeader {
-    padding: 12px 14px;
+    padding: 12px;
   }
   .cmFooter {
-    padding: 10px 14px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
   }
 }
